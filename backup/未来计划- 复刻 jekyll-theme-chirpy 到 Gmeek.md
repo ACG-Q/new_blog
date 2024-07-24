@@ -1,0 +1,1 @@
+[![cotes2020/jekyll-theme-chirpy - GitHub](https://gh-card.dev/repos/cotes2020/jekyll-theme-chirpy.svg)](https://github.com/cotes2020/jekyll-theme-chirpy)
