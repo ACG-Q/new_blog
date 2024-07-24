@@ -1,9 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Wed, 24 Jul 2024 04:06:47 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title>Mega网盘不限速下载</title><link>https://ACG-Q.github.io/new_blog/post/7.html</link><description># MegaDownloader
-
-## 介绍
-
-MegaDownloader 是一个用于从Mega.nz下载文件的免费开源应用程序。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/7.html</guid><pubDate>Wed, 24 Jul 2024 03:53:09 +0000</pubDate></item><item><title>译者++</title><link>https://ACG-Q.github.io/new_blog/post/6.html</link><description># 译者++
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Wed, 24 Jul 2024 04:07:45 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title>译者++</title><link>https://ACG-Q.github.io/new_blog/post/6.html</link><description># 译者++
 
 ## 介绍
 
@@ -118,4 +114,8 @@ $ git blame-someone-else &lt;背锅侠&gt; &lt;commit&gt;&#13;
 [👨‍💻 震惊！竟然有人在 GitHub 上冒充我的身份！](https://spencerwoo.com/blog/wait-this-is-not-my-commit)&#13;
 &#13;
 &#13;
-&lt;!-- ##{'timestamp':1705733895}## --&gt;。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/8.html</guid><pubDate>Sat, 20 Jan 2024 06:58:15 +0000</pubDate></item></channel></rss>
+&lt;!-- ##{'timestamp':1705733895}## --&gt;。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/8.html</guid><pubDate>Sat, 20 Jan 2024 06:58:15 +0000</pubDate></item><item><title>Mega网盘不限速下载</title><link>https://ACG-Q.github.io/new_blog/post/7.html</link><description># MegaDownloader&#13;
+&#13;
+## 介绍&#13;
+&#13;
+MegaDownloader 是一个用于从Mega.nz下载文件的免费开源应用程序。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/7.html</guid><pubDate>Wed, 10 Jan 2024 13:27:22 +0000</pubDate></item></channel></rss>

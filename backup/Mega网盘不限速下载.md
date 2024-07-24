@@ -6,11 +6,12 @@ MegaDownloader 是一个用于从Mega.nz下载文件的免费开源应用程序�
 
 ## 界面
 
-![](https://imag.malavida.com/mvimgbig/download-fs/megadownloader-12552-1.jpg)
+![image](https://github.com/user-attachments/assets/c31250f8-4ee4-4541-a9ed-f6aff7c90800)
 
-![](https://imag.malavida.com/mvimgbig/download-fs/megadownloader-12552-2.jpg)
+![image](https://github.com/user-attachments/assets/b763dacb-737b-4a52-ac18-912813c4bf7b)
 
 ### 下载
 
 [MegaDownloader\_v1.8.exe](https://htfl.net/nVgviPj)
+
 <!-- ##{"timestamp":1704893242}## -->
