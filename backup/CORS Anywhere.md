@@ -1,4 +1,4 @@
-![](https://gh-card.dev/repos/Rob--W/cors-anywhere.svg)
+[![Rob--W/cors-anywhere - GitHub](https://gh-card.dev/repos/Rob--W/cors-anywhere.svg)](https://github.com/Rob--W/cors-anywhere)
 
 # CORS Anywhere
 
