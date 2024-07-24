@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Wed, 24 Jul 2024 04:11:43 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title>译者++</title><link>https://ACG-Q.github.io/new_blog/post/6.html</link><description># 译者++
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Wed, 24 Jul 2024 04:31:43 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title>批量提交 Markdown 到Issue</title><link>https://ACG-Q.github.io/new_blog/post/9.html</link><description>&gt; 前情提要: 把Hexo博客的部分文章搬运到Gmeek博客中&#13;
+&#13;
+### 需求&#13;
+&#13;
+1. **读取json配置文件**：包含每个issue的标题、Markdown文件路径和标签。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/9.html</guid><pubDate>Wed, 24 Jul 2024 04:12:15 +0000</pubDate></item><item><title>译者++</title><link>https://ACG-Q.github.io/new_blog/post/6.html</link><description># 译者++
 
 ## 介绍
 
