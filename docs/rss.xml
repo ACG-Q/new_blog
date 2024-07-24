@@ -1,5 +1,116 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Wed, 24 Jul 2024 03:53:22 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title>Ren'Py 专用游戏汉化软件合集</title><link>https://ACG-Q.github.io/new_blog/post/2.html</link><description>&gt; 软件均来自网络
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Wed, 24 Jul 2024 03:56:14 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title>甩锅侠</title><link>https://ACG-Q.github.io/new_blog/post/8.html</link><description>[jBlame someone else for your bad code.](https://github.com/jayphelps/git-blame-someone-else)
+
+# git-blame-someone-else
+
+快速甩锅给你(不)认识的人
+
+&lt;!--more--&gt;
+
+## 安装
+
+```shell
+$ git clone https://github.com/jayphelps/git-blame-someone-else.git
+$ cd git-blame-someone-else
+$ sudo make install
+```
+
+## 使用
+
+```shell
+$ git blame-someone-else &lt;背锅侠&gt; &lt;commit&gt;
+```
+
+![ezgif-1396449034](https://cloud.githubusercontent.com/assets/762949/12863650/068e2820-cc2e-11e5-80c5-6ebdb71f51ea.gif)
+
+## 危害以及如何防护
+
+[👨‍💻 震惊！竟然有人在 GitHub 上冒充我的身份！](https://spencerwoo.com/blog/wait-this-is-not-my-commit)
+&lt;!-- ##{'timestamp':1705733895}## --&gt;。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/8.html</guid><pubDate>Wed, 24 Jul 2024 03:53:10 +0000</pubDate></item><item><title>Mega网盘不限速下载</title><link>https://ACG-Q.github.io/new_blog/post/7.html</link><description># MegaDownloader
+
+## 介绍
+
+MegaDownloader 是一个用于从Mega.nz下载文件的免费开源应用程序。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/7.html</guid><pubDate>Wed, 24 Jul 2024 03:53:09 +0000</pubDate></item><item><title>译者++</title><link>https://ACG-Q.github.io/new_blog/post/6.html</link><description># 译者++
+
+## 介绍
+
+一种结合了机器翻译的便利性和手动翻译的工具
+
+Translator++ 目前可以处理**RPG Maker XP、VX、VX Ace、MV 和 Wolf RPG 编辑器引擎**
+
+## 界面
+
+![](https://lh6.googleusercontent.com/FcUkn880LLf-hZJkcoFTStqT1qgmmDHtcD03ruK_do9LFrXtu08QMS9kt2UoodAXgGeUllMshCAos3fxCpcwSIiKBuf-UP-rbvZRerrgbVAs33zg4Piys6tBbyfvTHVpKh3m8dBW)
+
+![](https://lh6.googleusercontent.com/tUMH-x4EPdlUh7xV_IZJ05IlX3k8fXRc6ldAsRwANVCS737nVpc3WUlyYkMN0AKE7ts5aRiNtZtFxu8fWlQ9Fo3ZEbOeBDiyyDgQAkOOv6iP0DjTjG_wyJJcCIs6lE3ykr1XYBMv)
+
+## 下载
+
+#### Translator++ Ver. 6.1.10
+
+下载渠道(付费): [官网](https://dreamsavior.net/translator-the-introduction/)
+
+#### Translator++ Ver. 5.3.31
+
+下载渠道(免费):
+
+1. [官网](https://dreamsavior.net/translator-the-introduction/)
+2. [Translator++*5.3.31B_i32*[3b499b5f].7z](https://htfl.net/JDyLRTx)
+3. [Translator++*5.3.31B_i32*[3b499b5f].7z](url=https://htfl.net/JDyLRTx)
+&lt;!-- ##{'timestamp':1704890457}## --&gt;。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/6.html</guid><pubDate>Wed, 24 Jul 2024 03:53:08 +0000</pubDate></item><item><title>初尝汉化</title><link>https://ACG-Q.github.io/new_blog/post/5.html</link><description>&gt; 结束了!
+&gt; PowerToys已经出了官方中文
+
+### 记一次软件汉化的关键过程
+
+&gt; 汉化目标：PowerToys(微软小工具)
+
+#### 第一步：Radialix软件汉化
+
+直接汉化**PowerToys.exe**，**FancyZonesEditor.exe(PowerToys\modules)**，**ImageResizer.exe(PowerToys\modules)**
+
+| 程序名称                       | 新键本地化方案&gt;&gt;目标设置       | 原因                                                     | 汉化对象     |
+| ------------------------------ | ------------------------------ | -------------------------------------------------------- | ------------ |
+| **PowerToys.exe**        | **创建本地化文件**       |                                                          | 托盘菜单汉化 |
+| **FancyZonesEditor.exe** | **创建多语言本地化文件** | 明明本地化(创建本地化文件)成功了的，修改文件名称就失效了 | 程序界面汉化 |
+| **ImageResizer.exe**     | **创建本地化文件**       | 其实也可以不汉化，因为软件自带多语言                     | 程序界面汉化 |
+
+#### 第二步：js汉化
+
+直接使用**文本编辑器**进行修改**bundle.js(PowerToys\settings-html\dist)**
+
+通过**查找/替换**进行汉化，不过只能汉化以部分(选项一【**PowerToys General Settings**(常规设置)】**以及**弹窗菜单)，选项一中剩下没汉化的需要其余的汉化成功后，就会被自动替换。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/5.html</guid><pubDate>Wed, 24 Jul 2024 03:53:06 +0000</pubDate></item><item><title>Samsung Galaxy|C5|Lineage OS|Android 8.1</title><link>https://ACG-Q.github.io/new_blog/post/4.html</link><description>&gt; LineageOS14包来自[XDA](https://forum.xda-developers.com/android/development/rom-lineageos-14-1-samsung-galaxy-c5-t3585794)
+&gt;
+&gt; LineageOS15包来自[XDA](https://forum.xda-developers.com/android/development/rom-lineageos-15-1-samsung-galaxy-c5-t3828557)
+&gt;
+&gt; LineageOS16包来自[XDA](https://forum.xda-developers.com/android/development/unofficial-rom-lineageos-16-0-samsung-t3935875)
+
+### 搞机必备
+
+1. 下载本人打包好的文件
+
+   [蓝奏云](https://www.lanzoux.com/i9z7y6b)
+2. ~~以及C5000ZHU1CRJ5 五件套~~【仅限16和15】
+3. 最后也就是ROM包
+   [LineageOS 14.1 for Samsung Galaxy C5](https://vasy.ru/CM14/lineage-14.1-20170908-UNOFFICIAL-c5lte.zip)
+   [LineageOS 15.1 for Samsung Galaxy C5](https://vasy.ru/LineageOS-15/c5lte/lineage-15.1-20190322-UNOFFICIAL-c5lte.zip)
+   [LineageOS 16.0 for Samsung Galaxy C5](https://vasy.ru/LineageOS-16/c5lte/lineage-16.0-20191016-UNOFFICIAL-c5lte.zip)
+
+**准备完成后，进入正题**
+
+### 开始搞机
+
+&gt; 思路如下：解锁→刷TWRP→刷ROM包→完成！！
+
+1. 安装CROM Service APK【三星解锁工具】
+   - 路径：samsung_sm_c5000所有文件/CROM Service解锁/CROM Service[三星解锁].apk
+   - &lt;img src='https://s1.ax1x.com/2020/04/28/JISzLV.png' alt='CROM解锁' style='zoom: 33%;' /&gt;
+2. 解除FRP 锁【也就是查找我的手机】
+
+&lt;!-- more --&gt;
+
+3. 进入Download模式【就是挖煤模式、线刷模式。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/4.html</guid><pubDate>Wed, 24 Jul 2024 03:53:05 +0000</pubDate></item><item><title>斐讯K2路由器的救砖之旅</title><link>https://ACG-Q.github.io/new_blog/post/3.html</link><description>### 前言
+
+之前K2路由不是刷了号称怎么刷都不死的不死鸟Bread，结果在切换固件的时候，貌似刷出问题了，就重刷了几次，再然后就没有然后了，斐讯K2路由器宣告GG。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/3.html</guid><pubDate>Wed, 24 Jul 2024 03:53:04 +0000</pubDate></item><item><title>Ren'Py 专用游戏汉化软件合集</title><link>https://ACG-Q.github.io/new_blog/post/2.html</link><description>&gt; 软件均来自网络
 
 ## 前言
 
