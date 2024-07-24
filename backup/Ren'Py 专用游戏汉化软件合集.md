@@ -28,11 +28,6 @@
 
 > 无法保证为最新版
 
----
-
-renpy游戏实时翻译
-https://liuji.lanzoui.com/b06artmuf
- 
----
-
+[renpy游戏实时翻译 - 蓝奏云](https://liuji.lanzoui.com/b06artmuf)
 密码:ed00
+

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Wed, 24 Jul 2024 04:07:45 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title>译者++</title><link>https://ACG-Q.github.io/new_blog/post/6.html</link><description># 译者++
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Wed, 24 Jul 2024 04:11:43 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title>译者++</title><link>https://ACG-Q.github.io/new_blog/post/6.html</link><description># 译者++
 
 ## 介绍
 
@@ -79,10 +79,10 @@ Translator++ 目前可以处理**RPG Maker XP、VX、VX Ace、MV 和 Wolf RPG �
 
 3. 进入Download模式【就是挖煤模式、线刷模式。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/4.html</guid><pubDate>Wed, 24 Jul 2024 03:53:05 +0000</pubDate></item><item><title>斐讯K2路由器的救砖之旅</title><link>https://ACG-Q.github.io/new_blog/post/3.html</link><description>### 前言
 
-之前K2路由不是刷了号称怎么刷都不死的不死鸟Bread，结果在切换固件的时候，貌似刷出问题了，就重刷了几次，再然后就没有然后了，斐讯K2路由器宣告GG。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/3.html</guid><pubDate>Wed, 24 Jul 2024 03:53:04 +0000</pubDate></item><item><title>Ren'Py 专用游戏汉化软件合集</title><link>https://ACG-Q.github.io/new_blog/post/2.html</link><description>&gt; 软件均来自网络
-
-## 前言
-
+之前K2路由不是刷了号称怎么刷都不死的不死鸟Bread，结果在切换固件的时候，貌似刷出问题了，就重刷了几次，再然后就没有然后了，斐讯K2路由器宣告GG。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/3.html</guid><pubDate>Wed, 24 Jul 2024 03:53:04 +0000</pubDate></item><item><title>Ren'Py 专用游戏汉化软件合集</title><link>https://ACG-Q.github.io/new_blog/post/2.html</link><description>&gt; 软件均来自网络&#13;
+&#13;
+## 前言&#13;
+&#13;
 ​	越来越多的Ren·Py引擎开发的视觉游戏涌入网络，而这一大部分游戏都需要翻译，但是翻译游戏毕竟是由人工翻译完成的，需要时间。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/2.html</guid><pubDate>Wed, 24 Jul 2024 03:53:03 +0000</pubDate></item><item><title>Hexo转Gmeek</title><link>https://ACG-Q.github.io/new_blog/post/1.html</link><description>转移原因:&#13;
 1. 方便，巨他妈方便&#13;
 2. 简洁的不成样子。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/1.html</guid><pubDate>Wed, 24 Jul 2024 02:39:53 +0000</pubDate></item><item><title>甩锅侠</title><link>https://ACG-Q.github.io/new_blog/post/8.html</link><description>[jBlame someone else for your bad code.](https://github.com/jayphelps/git-blame-someone-else)&#13;
