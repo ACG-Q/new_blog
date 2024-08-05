@@ -330,42 +330,83 @@ data = jsonObject;
 
 ### 3. 应用免费下载
 
-1. 找到`AddAppBox`这个函数
-```c#
-private void AddAppBox(ReApp app)
+1. 找到`DownloadApp`这个函数
+```diff
+private void DownloadApp(params object[] objs)
 {
 	try
 	{
-		Border border = this.CreateBorder();
-		Grid grid = this.CreateGridBox(app);
-		StackPanel stackPanel = this.CreateImgPannel(app.ImageUrl);
-		Label label = this.CreateTitleLabel(10, '应用名：');
-		Label label2 = this.CreateTitleLabel(35, '积分：');
-		Label label3 = this.CreateTitleLabel(60, '演示：');
-		Label label4 = this.CreateTitleLabel(85, '描述：');
-		Label label5 = this.CreateLabel(10);
-		label5.Content = app.Name;
-		if (!string.IsNullOrEmpty(app.Size))
+		if (objs.Length != 0)
 		{
-			Label label6 = label5;
-			label6.Content = string.Concat(new object[] { label6.Content, ' [', app.Size, ']' });
+			ReApp rApp = objs[0] as ReApp;
+			if (rApp != null)
+			{
+				if (rApp.Status == 0)
+				{
+					ApiResult apiResult = Util.GetApiResult(Constants.API_GetApp + '?id=' + rApp.ID, 3);
++					apiResult.Status = 200;
+					if (apiResult.Status != 200)
+					{
+						this.loadingW.ShowMsg(apiResult.Msg, 2);
+						return;
+					}
+					rApp.Status = 1;
+				}
+				rApp.Status = 1;
+				this.cApp = rApp;
+				ProgressBar pb = this.barDics[rApp.ID];
+				Grid grid = this.gridDics[rApp.ID];
+				Button btn = this.btnDics[rApp.ID];
+				string appPath = Util.GetAppPath('/app');
+				if (!Directory.Exists(appPath))
+				{
+					Directory.CreateDirectory(appPath);
+				}
+				string text = appPath + '/' + rApp.Path + '.zip';
+				base.Dispatcher.Invoke(delegate
+				{
+					btn.Content = '下载中';
+					pb.Visibility = Visibility.Visible;
+				});
+				Util.DownLoadFile(text, rApp.DownloadUrl, new TimerDispatcherDelegate(this.SetProgressMax), new TimerDispatcherDelegate(this.SetProgress));
+				if (File.Exists(text))
+				{
+					base.Dispatcher.Invoke(delegate
+					{
+						btn.Content = '安装中';
+						pb.Visibility = Visibility.Visible;
+					});
+					ZipHelper.UnZipFile(text, appPath);
+					if (rApp.IsSetup)
+					{
+						this.IsChange = true;
+						this.btnActions[rApp.ID] = AppAction.Start;
+						if (rApp.LocalInfo == null)
+						{
+							AppInfo appInfo = new AppInfo(rApp);
+							appInfo.IsEnabled = true;
+							DataProcess.InsertApp(appInfo);
+							rApp.LocalInfo = appInfo;
+						}
+						base.Dispatcher.Invoke(delegate
+						{
+							pb.Visibility = Visibility.Collapsed;
+							this.SetActionStyle(rApp);
+						});
+					}
+				}
+			}
 		}
-		Label label7 = this.CreateLabel(35);
-		this.BindPrice(label7, app);
-		...
 	}
 	catch (Exception ex)
 	{
-		Util.AddLog('AddAppBox Error:' + ex.Message);
+		Util.AddLog('DownloadApp Error:' + ex.Message);
+		throw ex;
 	}
 }
 ```
-2. 修改app的积分价格
-```diff
-+ app.Price = 0.0;
-  this.BindPrice(label7, app);
-```
-3. 允许打开应用
+
+2. 允许打开应用
 > 找到`AppController`类
 > 找到`AppController`下的`CheckAppEnable`方法
 
@@ -751,42 +792,83 @@ data = jsonObject;
 
 ### 3. 应用免费下载
 
-1. 找到`AddAppBox`这个函数
-```c#
-private void AddAppBox(ReApp app)
+1. 找到`DownloadApp`这个函数
+```diff
+private void DownloadApp(params object[] objs)
 {
 	try
 	{
-		Border border = this.CreateBorder();
-		Grid grid = this.CreateGridBox(app);
-		StackPanel stackPanel = this.CreateImgPannel(app.ImageUrl);
-		Label label = this.CreateTitleLabel(10, '应用名：');
-		Label label2 = this.CreateTitleLabel(35, '积分：');
-		Label label3 = this.CreateTitleLabel(60, '演示：');
-		Label label4 = this.CreateTitleLabel(85, '描述：');
-		Label label5 = this.CreateLabel(10);
-		label5.Content = app.Name;
-		if (!string.IsNullOrEmpty(app.Size))
+		if (objs.Length != 0)
 		{
-			Label label6 = label5;
-			label6.Content = string.Concat(new object[] { label6.Content, ' [', app.Size, ']' });
+			ReApp rApp = objs[0] as ReApp;
+			if (rApp != null)
+			{
+				if (rApp.Status == 0)
+				{
+					ApiResult apiResult = Util.GetApiResult(Constants.API_GetApp + '?id=' + rApp.ID, 3);
++					apiResult.Status = 200;
+					if (apiResult.Status != 200)
+					{
+						this.loadingW.ShowMsg(apiResult.Msg, 2);
+						return;
+					}
+					rApp.Status = 1;
+				}
+				rApp.Status = 1;
+				this.cApp = rApp;
+				ProgressBar pb = this.barDics[rApp.ID];
+				Grid grid = this.gridDics[rApp.ID];
+				Button btn = this.btnDics[rApp.ID];
+				string appPath = Util.GetAppPath('/app');
+				if (!Directory.Exists(appPath))
+				{
+					Directory.CreateDirectory(appPath);
+				}
+				string text = appPath + '/' + rApp.Path + '.zip';
+				base.Dispatcher.Invoke(delegate
+				{
+					btn.Content = '下载中';
+					pb.Visibility = Visibility.Visible;
+				});
+				Util.DownLoadFile(text, rApp.DownloadUrl, new TimerDispatcherDelegate(this.SetProgressMax), new TimerDispatcherDelegate(this.SetProgress));
+				if (File.Exists(text))
+				{
+					base.Dispatcher.Invoke(delegate
+					{
+						btn.Content = '安装中';
+						pb.Visibility = Visibility.Visible;
+					});
+					ZipHelper.UnZipFile(text, appPath);
+					if (rApp.IsSetup)
+					{
+						this.IsChange = true;
+						this.btnActions[rApp.ID] = AppAction.Start;
+						if (rApp.LocalInfo == null)
+						{
+							AppInfo appInfo = new AppInfo(rApp);
+							appInfo.IsEnabled = true;
+							DataProcess.InsertApp(appInfo);
+							rApp.LocalInfo = appInfo;
+						}
+						base.Dispatcher.Invoke(delegate
+						{
+							pb.Visibility = Visibility.Collapsed;
+							this.SetActionStyle(rApp);
+						});
+					}
+				}
+			}
 		}
-		Label label7 = this.CreateLabel(35);
-		this.BindPrice(label7, app);
-		...
 	}
 	catch (Exception ex)
 	{
-		Util.AddLog('AddAppBox Error:' + ex.Message);
+		Util.AddLog('DownloadApp Error:' + ex.Message);
+		throw ex;
 	}
 }
 ```
-2. 修改app的积分价格
-```diff
-+ app.Price = 0.0;
-  this.BindPrice(label7, app);
-```
-3. 允许打开应用
+
+2. 允许打开应用
 > 找到`AppController`类
 > 找到`AppController`下的`CheckAppEnable`方法
 
@@ -1215,41 +1297,81 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </details>
 <h3>3. 应用免费下载</h3>
 <ol>
-<li>找到<code class="notranslate">AddAppBox</code>这个函数</li>
+<li>找到<code class="notranslate">DownloadApp</code>这个函数</li>
 </ol>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">private</span> <span class="pl-smi">void</span> <span class="pl-en">AddAppBox</span><span class="pl-kos">(</span><span class="pl-smi">ReApp</span> <span class="pl-s1">app</span><span class="pl-kos">)</span>
-<span class="pl-kos">{</span>
-	<span class="pl-k">try</span>
-	<span class="pl-kos">{</span>
-		<span class="pl-smi">Border</span> <span class="pl-s1">border</span> <span class="pl-c1">=</span> <span class="pl-k">this</span><span class="pl-kos">.</span><span class="pl-en">CreateBorder</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-		<span class="pl-smi">Grid</span> <span class="pl-s1">grid</span> <span class="pl-c1">=</span> <span class="pl-k">this</span><span class="pl-kos">.</span><span class="pl-en">CreateGridBox</span><span class="pl-kos">(</span>app<span class="pl-kos">)</span><span class="pl-kos">;</span>
-		<span class="pl-smi">StackPanel</span> <span class="pl-s1">stackPanel</span> <span class="pl-c1">=</span> <span class="pl-k">this</span><span class="pl-kos">.</span><span class="pl-en">CreateImgPannel</span><span class="pl-kos">(</span>app<span class="pl-kos">.</span>ImageUrl<span class="pl-kos">)</span><span class="pl-kos">;</span>
-		<span class="pl-smi">Label</span> <span class="pl-s1">label</span> <span class="pl-c1">=</span> <span class="pl-k">this</span><span class="pl-kos">.</span><span class="pl-en">CreateTitleLabel</span><span class="pl-kos">(</span><span class="pl-c1">10</span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>应用名：<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-		<span class="pl-smi">Label</span> <span class="pl-s1">label2</span> <span class="pl-c1">=</span> <span class="pl-k">this</span><span class="pl-kos">.</span><span class="pl-en">CreateTitleLabel</span><span class="pl-kos">(</span><span class="pl-c1">35</span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>积分：<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-		<span class="pl-smi">Label</span> <span class="pl-s1">label3</span> <span class="pl-c1">=</span> <span class="pl-k">this</span><span class="pl-kos">.</span><span class="pl-en">CreateTitleLabel</span><span class="pl-kos">(</span><span class="pl-c1">60</span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>演示：<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-		<span class="pl-smi">Label</span> <span class="pl-s1">label4</span> <span class="pl-c1">=</span> <span class="pl-k">this</span><span class="pl-kos">.</span><span class="pl-en">CreateTitleLabel</span><span class="pl-kos">(</span><span class="pl-c1">85</span><span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>描述：<span class="pl-s">"</span></span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-		<span class="pl-smi">Label</span> <span class="pl-s1">label5</span> <span class="pl-c1">=</span> <span class="pl-k">this</span><span class="pl-kos">.</span><span class="pl-en">CreateLabel</span><span class="pl-kos">(</span><span class="pl-c1">10</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-		label5<span class="pl-kos">.</span>Content <span class="pl-c1">=</span> app<span class="pl-kos">.</span>Name<span class="pl-kos">;</span>
-		<span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-c1">!</span><span class="pl-smi">string</span><span class="pl-kos">.</span><span class="pl-en">IsNullOrEmpty</span><span class="pl-kos">(</span>app<span class="pl-kos">.</span>Size<span class="pl-kos">)</span><span class="pl-kos">)</span>
-		<span class="pl-kos">{</span>
-			<span class="pl-smi">Label</span> <span class="pl-s1">label6</span> <span class="pl-c1">=</span> label5<span class="pl-kos">;</span>
-			label6<span class="pl-kos">.</span>Content <span class="pl-c1">=</span> <span class="pl-smi">string</span><span class="pl-kos">.</span><span class="pl-en">Concat</span><span class="pl-kos">(</span><span class="pl-k">new</span> <span class="pl-smi">object</span><span class="pl-kos">[</span><span class="pl-kos">]</span> <span class="pl-kos">{</span> label6<span class="pl-kos">.</span>Content<span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span> [<span class="pl-s">"</span></span><span class="pl-kos">,</span> app<span class="pl-kos">.</span>Size<span class="pl-kos">,</span> <span class="pl-s"><span class="pl-s">"</span>]<span class="pl-s">"</span></span> <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-		<span class="pl-kos">}</span>
-		<span class="pl-smi">Label</span> <span class="pl-s1">label7</span> <span class="pl-c1">=</span> <span class="pl-k">this</span><span class="pl-kos">.</span><span class="pl-en">CreateLabel</span><span class="pl-kos">(</span><span class="pl-c1">35</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-		<span class="pl-k">this</span><span class="pl-kos">.</span><span class="pl-en">BindPrice</span><span class="pl-kos">(</span>label7<span class="pl-kos">,</span> app<span class="pl-kos">)</span><span class="pl-kos">;</span>
-		..<span class="pl-kos">.</span>
-	<span class="pl-kos">}</span>
-	<span class="pl-k">catch</span> <span class="pl-kos">(</span><span class="pl-smi">Exception</span> <span class="pl-s1">ex</span><span class="pl-kos">)</span>
-	<span class="pl-kos">{</span>
-		Util<span class="pl-kos">.</span><span class="pl-en">AddLog</span><span class="pl-kos">(</span><span class="pl-s"><span class="pl-s">"</span>AddAppBox Error:<span class="pl-s">"</span></span> <span class="pl-c1">+</span> ex<span class="pl-kos">.</span>Message<span class="pl-kos">)</span><span class="pl-kos">;</span>
-	<span class="pl-kos">}</span>
-<span class="pl-kos">}</span></pre></div>
+<div class="highlight highlight-source-diff"><pre class="notranslate">private void DownloadApp(params object[] objs)
+{
+	try
+	{
+		if (objs.Length != 0)
+		{
+			ReApp rApp = objs[0] as ReApp;
+			if (rApp != null)
+			{
+				if (rApp.Status == 0)
+				{
+					ApiResult apiResult = Util.GetApiResult(Constants.API_GetApp + "?id=" + rApp.ID, 3);
+<span class="pl-mi1"><span class="pl-mi1">+</span>					apiResult.Status = 200;</span>
+					if (apiResult.Status != 200)
+					{
+						this.loadingW.ShowMsg(apiResult.Msg, 2);
+						return;
+					}
+					rApp.Status = 1;
+				}
+				rApp.Status = 1;
+				this.cApp = rApp;
+				ProgressBar pb = this.barDics[rApp.ID];
+				Grid grid = this.gridDics[rApp.ID];
+				Button btn = this.btnDics[rApp.ID];
+				string appPath = Util.GetAppPath("/app");
+				if (!Directory.Exists(appPath))
+				{
+					Directory.CreateDirectory(appPath);
+				}
+				string text = appPath + "/" + rApp.Path + ".zip";
+				base.Dispatcher.Invoke(delegate
+				{
+					btn.Content = "下载中";
+					pb.Visibility = Visibility.Visible;
+				});
+				Util.DownLoadFile(text, rApp.DownloadUrl, new TimerDispatcherDelegate(this.SetProgressMax), new TimerDispatcherDelegate(this.SetProgress));
+				if (File.Exists(text))
+				{
+					base.Dispatcher.Invoke(delegate
+					{
+						btn.Content = "安装中";
+						pb.Visibility = Visibility.Visible;
+					});
+					ZipHelper.UnZipFile(text, appPath);
+					if (rApp.IsSetup)
+					{
+						this.IsChange = true;
+						this.btnActions[rApp.ID] = AppAction.Start;
+						if (rApp.LocalInfo == null)
+						{
+							AppInfo appInfo = new AppInfo(rApp);
+							appInfo.IsEnabled = true;
+							DataProcess.InsertApp(appInfo);
+							rApp.LocalInfo = appInfo;
+						}
+						base.Dispatcher.Invoke(delegate
+						{
+							pb.Visibility = Visibility.Collapsed;
+							this.SetActionStyle(rApp);
+						});
+					}
+				}
+			}
+		}
+	}
+	catch (Exception ex)
+	{
+		Util.AddLog("DownloadApp Error:" + ex.Message);
+		throw ex;
+	}
+}</pre></div>
 <ol start="2">
-<li>修改app的积分价格</li>
-</ol>
-<div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-mi1"><span class="pl-mi1">+</span> app.Price = 0.0;</span>
-  this.BindPrice(label7, app);</pre></div>
-<ol start="3">
 <li>允许打开应用</li>
 </ol>
 <blockquote>

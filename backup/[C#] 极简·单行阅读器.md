@@ -318,42 +318,83 @@ data = jsonObject;
 
 ### 3. 应用免费下载
 
-1. 找到`AddAppBox`这个函数
-```c#
-private void AddAppBox(ReApp app)
+1. 找到`DownloadApp`这个函数
+```diff
+private void DownloadApp(params object[] objs)
 {
 	try
 	{
-		Border border = this.CreateBorder();
-		Grid grid = this.CreateGridBox(app);
-		StackPanel stackPanel = this.CreateImgPannel(app.ImageUrl);
-		Label label = this.CreateTitleLabel(10, "应用名：");
-		Label label2 = this.CreateTitleLabel(35, "积分：");
-		Label label3 = this.CreateTitleLabel(60, "演示：");
-		Label label4 = this.CreateTitleLabel(85, "描述：");
-		Label label5 = this.CreateLabel(10);
-		label5.Content = app.Name;
-		if (!string.IsNullOrEmpty(app.Size))
+		if (objs.Length != 0)
 		{
-			Label label6 = label5;
-			label6.Content = string.Concat(new object[] { label6.Content, " [", app.Size, "]" });
+			ReApp rApp = objs[0] as ReApp;
+			if (rApp != null)
+			{
+				if (rApp.Status == 0)
+				{
+					ApiResult apiResult = Util.GetApiResult(Constants.API_GetApp + "?id=" + rApp.ID, 3);
++					apiResult.Status = 200;
+					if (apiResult.Status != 200)
+					{
+						this.loadingW.ShowMsg(apiResult.Msg, 2);
+						return;
+					}
+					rApp.Status = 1;
+				}
+				rApp.Status = 1;
+				this.cApp = rApp;
+				ProgressBar pb = this.barDics[rApp.ID];
+				Grid grid = this.gridDics[rApp.ID];
+				Button btn = this.btnDics[rApp.ID];
+				string appPath = Util.GetAppPath("/app");
+				if (!Directory.Exists(appPath))
+				{
+					Directory.CreateDirectory(appPath);
+				}
+				string text = appPath + "/" + rApp.Path + ".zip";
+				base.Dispatcher.Invoke(delegate
+				{
+					btn.Content = "下载中";
+					pb.Visibility = Visibility.Visible;
+				});
+				Util.DownLoadFile(text, rApp.DownloadUrl, new TimerDispatcherDelegate(this.SetProgressMax), new TimerDispatcherDelegate(this.SetProgress));
+				if (File.Exists(text))
+				{
+					base.Dispatcher.Invoke(delegate
+					{
+						btn.Content = "安装中";
+						pb.Visibility = Visibility.Visible;
+					});
+					ZipHelper.UnZipFile(text, appPath);
+					if (rApp.IsSetup)
+					{
+						this.IsChange = true;
+						this.btnActions[rApp.ID] = AppAction.Start;
+						if (rApp.LocalInfo == null)
+						{
+							AppInfo appInfo = new AppInfo(rApp);
+							appInfo.IsEnabled = true;
+							DataProcess.InsertApp(appInfo);
+							rApp.LocalInfo = appInfo;
+						}
+						base.Dispatcher.Invoke(delegate
+						{
+							pb.Visibility = Visibility.Collapsed;
+							this.SetActionStyle(rApp);
+						});
+					}
+				}
+			}
 		}
-		Label label7 = this.CreateLabel(35);
-		this.BindPrice(label7, app);
-		...
 	}
 	catch (Exception ex)
 	{
-		Util.AddLog("AddAppBox Error:" + ex.Message);
+		Util.AddLog("DownloadApp Error:" + ex.Message);
+		throw ex;
 	}
 }
 ```
-2. 修改app的积分价格
-```diff
-+ app.Price = 0.0;
-  this.BindPrice(label7, app);
-```
-3. 允许打开应用
+
+2. 允许打开应用
 > 找到`AppController`类
 > 找到`AppController`下的`CheckAppEnable`方法
 
