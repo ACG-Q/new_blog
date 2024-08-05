@@ -130,87 +130,102 @@ public void UpdateDataFromJson(JToken data)
 > 构建一个虚假登录内容用于解析
 
 ```c#
-JObject jobject = new JObject();
-jobject['user_name'] = '52钓鱼崽';
-jobject['user_create_time'] = DateTime.Now.ToString();
-jobject['phone'] = '1234567890';
-jobject['nick_name'] = '52钓鱼崽';
-jobject['nick_flag'] = 0;
-jobject['sex'] = 0;
-jobject['head_img'] = 'http://example.com/image.jpg';
-jobject['status'] = 1;
-jobject['active_id'] = 'A123';
-jobject['last_version'] = '123';
-jobject['update_version'] = '456';
-jobject['expire_date'] = DateTime.Now.AddDays(30.0).ToString();
-jobject['qq_group'] = '123456';
-jobject['channel'] = 'Web';
-jobject['chapter_ai_url'] = 'http://example.com/ai';
-jobject['member_share_cnt'] = 5;
-jobject['point_day'] = 50;
-// 这里是下拉框更多
-string text3 = 'append';
-JArray jarray = new JArray();
-JObject jobject2 = new JObject();
-jobject2['url'] = '';
-jobject2['title'] = '52钓鱼崽 破解';
-jarray.Add(jobject2);
-jobject[text3] = jarray;
-// 好像是和 nick_name 字段有关
-string text4 = 'site';
-JArray jarray2 = new JArray();
-JObject jobject3 = new JObject();
-jobject3['url'] = '';
-jobject3['title'] = '';
-jobject3['plug_uid'] = '';
-jarray2.Add(jobject3);
-jobject[text4] = jarray2;
-// 购买了哪些APP
-// 这里的参数都是 和 应用中心 的应用信息一一对应
-string text5 = 'app';
-JArray jarray3 = new JArray();
-JObject jobject4 = new JObject();
-jobject4['id'] = Guid.NewGuid().ToString();
-jobject4['name'] = '52钓鱼崽';
-jobject4['status'] = '1';
-jobject4['enabled'] = '1';
-jobject4['type'] = '1';
-jobject4['path'] = '52钓鱼崽';
-jobject4['imgUrl'] = 'https://static.52pojie.cn/static/image/common/logo.png';
-jobject4['remark'] = '52钓鱼崽';
-jobject4['helpUrl'] = 'https://www.52pojie.cn/';
-jobject4['downloadUrl'] = 'https://www.52pojie.cn/';
-jobject4['updateUrl'] = 'https://www.52pojie.cn/';
-jobject4['className'] = '52钓鱼崽';
-jobject4['version'] = text;
-jobject4['price'] = '999';
-jobject4['freeDay'] = '1';
-jobject4['size'] = '520';
-jarray3.Add(jobject4);
-jobject[text5] = jarray3;
-// 公告
-// url 存在，软件运行，打开网页
-// msg 存在，软件运行，打开弹窗
-// close 等于 true，软件运行后自动关闭
-// cap 不清楚，忘了
-string text6 = 'msg';
-JObject jobject5 = new JObject();
-jobject5['msg'] = '';
-jobject5['cap'] = '';
-jobject5['url'] = '';
-jobject5['close'] = false;
-jobject[text6] = jobject5;
-data = jobject;
+JObject jsonObject = new JObject
+{
+    ['user_name'] = '52钓鱼崽',
+    ['user_create_time'] = DateTime.Now.ToString(),
+    ['phone'] = '1234567890',
+    ['nick_name'] = '52钓鱼崽',
+    ['nick_flag'] = 0,
+    ['sex'] = 0,
+    ['head_img'] = 'http://read.home133.com/img/icon/picture.svg',
+    ['status'] = 1,
+    ['active_id'] = 'A123',
+    ['last_version'] = '123',
+    ['update_version'] = '456',
+    ['expire_date'] = DateTime.Now.AddDays(30.0).ToString(),
+    ['qq_group'] = '123456',
+    ['channel'] = 'Web',
+    ['chapter_ai_url'] = 'https://acg-q.github.io/new_blog/post/12.html',
+    ['member_share_cnt'] = 5,
+    ['point_day'] = 50,
+    // 更多 选项
+    ['append'] = new JArray
+    {
+        new JObject
+        {
+            ['url'] = '',
+            ['title'] = '52钓鱼崽 破解'
+        }
+    },
+    // 这里应该是插件
+    ['site'] = new JArray
+    {
+        new JObject
+        {
+            ['url'] = '',
+            ['title'] = '',
+            ['plug_uid'] = ''
+        }
+    },
+    ['site'] = new JArray
+    {
+        new JObject
+        {
+            ['url'] = '',
+            ['title'] = '',
+            ['plug_uid'] = ''
+        }
+    },
+    // 购买了哪些APP
+    // 这里的参数都是 和 应用中心 的应用信息一一对应
+    ['app'] = new JArray
+    {
+        new JObject
+        {
+            ['id'] = '',
+            ['name'] = '',
+            ['status'] = '1', // 这里必须存在且是数字
+            ['enabled'] = '1', // 这里必须存在且是数字
+            ['type'] = '1', // 这里必须存在且是数字
+            ['path'] = '',
+            ['imgUrl'] = '',
+            ['remark'] = '',
+            ['helpUrl'] = '',
+            ['downloadUrl'] = '',
+            ['updateUrl'] = '',
+            ['className'] = '',
+            ['version'] = '',
+            ['price'] = '999', // 这里必须存在且是数字
+            ['freeDay'] = '1', // 这里必须存在且是数字
+            ['size'] = ''
+        }
+    },
+    // 公告
+    // url 存在，软件运行，打开网页
+    // msg 存在，软件运行，打开弹窗
+    // close 等于 true，软件运行后自动关闭
+    // cap 不清楚，忘了
+    ['msg'] = new JObject
+    {
+        ['msg'] = '',
+        ['cap'] = '',
+        ['url'] = '',
+        ['close'] = false
+    }
+};
+
+data = jsonObject;
 ```
 3. 保持软件更新(不过这里没有测试过...)
 > 把`AutoLogin`函数里的`ApiResult apiResult = Util.GetApiResult(Constants.API_PreRegInfo, 10);`复制一份
 > 将获取到的内容通过Data传递下去
 ```diff
-  ApiResult apiResult2 = Util.GetApiResult(Constants.API_PreRegInfo, 10);
-+ ApiResult apiResult3 = Util.GetApiResult(Constants.API_AutoLogin, 10);
-+ apiResult3.Data = apiResult2.Data;
-+ apiResult3.Status = 200;
-  if (apiResult3.Status == 200)
+  ApiResult apiResult2 = Util.GetApiResult(Constants.API_AutoLogin, 10);
++ ApiResult apiResult = Util.GetApiResult(Constants.API_PreRegInfo, 10);
++ apiResult2.Data = apiResult.Data;
++ apiResult2.Status = 200;
+  if (apiResult2.Status == 200)
 ```
 > 在`UpdateDataFromJson`里面提取出`last_version`和`update_version`
 
@@ -220,11 +235,98 @@ string text2 = data['update_version'].ToString();
 ```
 
 ```diff
-jobject['last_version'] = '123';
-jobject['update_version'] = '456';
-jobject['last_version'] = text;
-jobject['update_version'] = text2;
+- ['last_version'] = '123',
+- ['update_version'] = '456',
++ ['last_version'] = text,
++ ['update_version']  = text2,
 ```
+
+<details>
+<summary>完整的代码</summary>
+
+```c#
+string text = data['last_version'].ToString();
+string text2 = data['update_version'].ToString();
+
+JObject jsonObject = new JObject
+{
+    ['user_name'] = '52钓鱼崽',
+    ['user_create_time'] = DateTime.Now.ToString(),
+    ['phone'] = '1234567890',
+    ['nick_name'] = '52钓鱼崽',
+    ['nick_flag'] = 0,
+    ['sex'] = 0,
+    ['head_img'] = 'http://read.home133.com/img/icon/picture.svg',
+    ['status'] = 1,
+    ['active_id'] = 'A123',
+    ['last_version'] = text,
+    ['update_version']  = text2,
+    ['expire_date'] = DateTime.Now.AddDays(30.0).ToString(),
+    ['qq_group'] = '123456',
+    ['channel'] = 'Web',
+    ['chapter_ai_url'] = 'https://acg-q.github.io/new_blog/post/12.html',
+    ['member_share_cnt'] = 5,
+    ['point_day'] = 50,
+    // 更多 选项
+    ['append'] = new JArray
+    {
+        new JObject
+        {
+            ['url'] = 'https://acg-q.github.io/new_blog/post/12.html',
+            ['title'] = '52钓鱼崽 破解'
+        }
+    },
+    // 这里应该是插件
+    ['site'] = new JArray
+    {
+        new JObject
+        {
+            ['url'] = '',
+            ['title'] = '',
+            ['plug_uid'] = ''
+        }
+    },
+    // 购买了哪些APP
+    // 这里的参数都是 和 应用中心 的应用信息一一对应
+    ['app'] = new JArray
+    {
+        new JObject
+        {
+            ['id'] = '',
+            ['name'] = '',
+            ['status'] = '1', // 这里必须存在且是数字
+            ['enabled'] = '1', // 这里必须存在且是数字
+            ['type'] = '1', // 这里必须存在且是数字
+            ['path'] = '',
+            ['imgUrl'] = '',
+            ['remark'] = '',
+            ['helpUrl'] = '',
+            ['downloadUrl'] = '',
+            ['updateUrl'] = '',
+            ['className'] = '',
+            ['version'] = '',
+            ['price'] = '999', // 这里必须存在且是数字
+            ['freeDay'] = '1', // 这里必须存在且是数字
+            ['size'] = ''
+        }
+    },
+    // 公告
+    // url 存在，软件运行，打开网页
+    // msg 存在，软件运行，打开弹窗
+    // close 等于 true，软件运行后自动关闭
+    // cap 不清楚，忘了
+    ['msg'] = new JObject
+    {
+        ['msg'] = '',
+        ['cap'] = '',
+        ['url'] = '',
+        ['close'] = false
+    }
+};
+
+data = jsonObject;
+```
+</details>
 
 ### 3. 应用免费下载
 
@@ -284,15 +386,38 @@ public ApiResult CheckAppEnable()
 }
 ```
 
-### 4. 修改会员状态为永久会员
+### 4. 修改会员信息
 
-> 在修改登录结果时，将'status'设置为1即可
+1.  找到`RegResult`类
 
-![image](https://github.com/user-attachments/assets/bac5b871-f336-44ea-91a4-ed0115139a81)
+![image](https://github.com/user-attachments/assets/e5b96599-7ffb-49ff-88bc-9b7c6f441ae3)
 
-```c#
-jobject4['status'] = '1';
+2. 修改`UpdateDataFromJson`方法
+
+```diff
+  public void UpdateDataFromJson(JToken data)
+  {
+	// 剩余可用积分
+- 	this.SharePoint = (int)data['share'];
++   this.SharePoint = 9999;
+	this.ExpireDate = data['expire_date'].ToString();
+	// 积分总数
+- 	this.TotalSharePoint = (int)data['total_share'];
++   this.TotalSharePoint = 9999;
+	// 分享数量
+- 	this.ShareUserCnt = (int)data['share_ucnt'];
++   this.ShareUserCnt = 456;
+	// 不清楚
+- 	this.PayPoint = ((data['pay_point'] == null) ? 5 : ((int)data['pay_point']));
++   this.PayPoint = 999;
+	// 用户状态
+- 	this.Status = (UserStatus)(int)data['status'];
++	this.Status = UserStatus.Member;
+  }
 ```
+
+![image](https://github.com/user-attachments/assets/d37554a2-e0d7-4273-bf99-7f56ba65872e)
+
 
 ### 5. 插件免费下载(待完成)
 
@@ -426,87 +551,102 @@ public void UpdateDataFromJson(JToken data)
 > 构建一个虚假登录内容用于解析
 
 ```c#
-JObject jobject = new JObject();
-jobject['user_name'] = '52钓鱼崽';
-jobject['user_create_time'] = DateTime.Now.ToString();
-jobject['phone'] = '1234567890';
-jobject['nick_name'] = '52钓鱼崽';
-jobject['nick_flag'] = 0;
-jobject['sex'] = 0;
-jobject['head_img'] = 'http://example.com/image.jpg';
-jobject['status'] = 1;
-jobject['active_id'] = 'A123';
-jobject['last_version'] = '123';
-jobject['update_version'] = '456';
-jobject['expire_date'] = DateTime.Now.AddDays(30.0).ToString();
-jobject['qq_group'] = '123456';
-jobject['channel'] = 'Web';
-jobject['chapter_ai_url'] = 'http://example.com/ai';
-jobject['member_share_cnt'] = 5;
-jobject['point_day'] = 50;
-// 这里是下拉框更多
-string text3 = 'append';
-JArray jarray = new JArray();
-JObject jobject2 = new JObject();
-jobject2['url'] = '';
-jobject2['title'] = '52钓鱼崽 破解';
-jarray.Add(jobject2);
-jobject[text3] = jarray;
-// 好像是和 nick_name 字段有关
-string text4 = 'site';
-JArray jarray2 = new JArray();
-JObject jobject3 = new JObject();
-jobject3['url'] = '';
-jobject3['title'] = '';
-jobject3['plug_uid'] = '';
-jarray2.Add(jobject3);
-jobject[text4] = jarray2;
-// 购买了哪些APP
-// 这里的参数都是 和 应用中心 的应用信息一一对应
-string text5 = 'app';
-JArray jarray3 = new JArray();
-JObject jobject4 = new JObject();
-jobject4['id'] = Guid.NewGuid().ToString();
-jobject4['name'] = '52钓鱼崽';
-jobject4['status'] = '1';
-jobject4['enabled'] = '1';
-jobject4['type'] = '1';
-jobject4['path'] = '52钓鱼崽';
-jobject4['imgUrl'] = 'https://static.52pojie.cn/static/image/common/logo.png';
-jobject4['remark'] = '52钓鱼崽';
-jobject4['helpUrl'] = 'https://www.52pojie.cn/';
-jobject4['downloadUrl'] = 'https://www.52pojie.cn/';
-jobject4['updateUrl'] = 'https://www.52pojie.cn/';
-jobject4['className'] = '52钓鱼崽';
-jobject4['version'] = text;
-jobject4['price'] = '999';
-jobject4['freeDay'] = '1';
-jobject4['size'] = '520';
-jarray3.Add(jobject4);
-jobject[text5] = jarray3;
-// 公告
-// url 存在，软件运行，打开网页
-// msg 存在，软件运行，打开弹窗
-// close 等于 true，软件运行后自动关闭
-// cap 不清楚，忘了
-string text6 = 'msg';
-JObject jobject5 = new JObject();
-jobject5['msg'] = '';
-jobject5['cap'] = '';
-jobject5['url'] = '';
-jobject5['close'] = false;
-jobject[text6] = jobject5;
-data = jobject;
+JObject jsonObject = new JObject
+{
+    ['user_name'] = '52钓鱼崽',
+    ['user_create_time'] = DateTime.Now.ToString(),
+    ['phone'] = '1234567890',
+    ['nick_name'] = '52钓鱼崽',
+    ['nick_flag'] = 0,
+    ['sex'] = 0,
+    ['head_img'] = 'http://read.home133.com/img/icon/picture.svg',
+    ['status'] = 1,
+    ['active_id'] = 'A123',
+    ['last_version'] = '123',
+    ['update_version'] = '456',
+    ['expire_date'] = DateTime.Now.AddDays(30.0).ToString(),
+    ['qq_group'] = '123456',
+    ['channel'] = 'Web',
+    ['chapter_ai_url'] = 'https://acg-q.github.io/new_blog/post/12.html',
+    ['member_share_cnt'] = 5,
+    ['point_day'] = 50,
+    // 更多 选项
+    ['append'] = new JArray
+    {
+        new JObject
+        {
+            ['url'] = '',
+            ['title'] = '52钓鱼崽 破解'
+        }
+    },
+    // 这里应该是插件
+    ['site'] = new JArray
+    {
+        new JObject
+        {
+            ['url'] = '',
+            ['title'] = '',
+            ['plug_uid'] = ''
+        }
+    },
+    ['site'] = new JArray
+    {
+        new JObject
+        {
+            ['url'] = '',
+            ['title'] = '',
+            ['plug_uid'] = ''
+        }
+    },
+    // 购买了哪些APP
+    // 这里的参数都是 和 应用中心 的应用信息一一对应
+    ['app'] = new JArray
+    {
+        new JObject
+        {
+            ['id'] = '',
+            ['name'] = '',
+            ['status'] = '1', // 这里必须存在且是数字
+            ['enabled'] = '1', // 这里必须存在且是数字
+            ['type'] = '1', // 这里必须存在且是数字
+            ['path'] = '',
+            ['imgUrl'] = '',
+            ['remark'] = '',
+            ['helpUrl'] = '',
+            ['downloadUrl'] = '',
+            ['updateUrl'] = '',
+            ['className'] = '',
+            ['version'] = '',
+            ['price'] = '999', // 这里必须存在且是数字
+            ['freeDay'] = '1', // 这里必须存在且是数字
+            ['size'] = ''
+        }
+    },
+    // 公告
+    // url 存在，软件运行，打开网页
+    // msg 存在，软件运行，打开弹窗
+    // close 等于 true，软件运行后自动关闭
+    // cap 不清楚，忘了
+    ['msg'] = new JObject
+    {
+        ['msg'] = '',
+        ['cap'] = '',
+        ['url'] = '',
+        ['close'] = false
+    }
+};
+
+data = jsonObject;
 ```
 3. 保持软件更新(不过这里没有测试过...)
 > 把`AutoLogin`函数里的`ApiResult apiResult = Util.GetApiResult(Constants.API_PreRegInfo, 10);`复制一份
 > 将获取到的内容通过Data传递下去
 ```diff
-  ApiResult apiResult2 = Util.GetApiResult(Constants.API_PreRegInfo, 10);
-+ ApiResult apiResult3 = Util.GetApiResult(Constants.API_AutoLogin, 10);
-+ apiResult3.Data = apiResult2.Data;
-+ apiResult3.Status = 200;
-  if (apiResult3.Status == 200)
+  ApiResult apiResult2 = Util.GetApiResult(Constants.API_AutoLogin, 10);
++ ApiResult apiResult = Util.GetApiResult(Constants.API_PreRegInfo, 10);
++ apiResult2.Data = apiResult.Data;
++ apiResult2.Status = 200;
+  if (apiResult2.Status == 200)
 ```
 > 在`UpdateDataFromJson`里面提取出`last_version`和`update_version`
 
@@ -516,11 +656,98 @@ string text2 = data['update_version'].ToString();
 ```
 
 ```diff
-jobject['last_version'] = '123';
-jobject['update_version'] = '456';
-jobject['last_version'] = text;
-jobject['update_version'] = text2;
+- ['last_version'] = '123',
+- ['update_version'] = '456',
++ ['last_version'] = text,
++ ['update_version']  = text2,
 ```
+
+<details>
+<summary>完整的代码</summary>
+
+```c#
+string text = data['last_version'].ToString();
+string text2 = data['update_version'].ToString();
+
+JObject jsonObject = new JObject
+{
+    ['user_name'] = '52钓鱼崽',
+    ['user_create_time'] = DateTime.Now.ToString(),
+    ['phone'] = '1234567890',
+    ['nick_name'] = '52钓鱼崽',
+    ['nick_flag'] = 0,
+    ['sex'] = 0,
+    ['head_img'] = 'http://read.home133.com/img/icon/picture.svg',
+    ['status'] = 1,
+    ['active_id'] = 'A123',
+    ['last_version'] = text,
+    ['update_version']  = text2,
+    ['expire_date'] = DateTime.Now.AddDays(30.0).ToString(),
+    ['qq_group'] = '123456',
+    ['channel'] = 'Web',
+    ['chapter_ai_url'] = 'https://acg-q.github.io/new_blog/post/12.html',
+    ['member_share_cnt'] = 5,
+    ['point_day'] = 50,
+    // 更多 选项
+    ['append'] = new JArray
+    {
+        new JObject
+        {
+            ['url'] = 'https://acg-q.github.io/new_blog/post/12.html',
+            ['title'] = '52钓鱼崽 破解'
+        }
+    },
+    // 这里应该是插件
+    ['site'] = new JArray
+    {
+        new JObject
+        {
+            ['url'] = '',
+            ['title'] = '',
+            ['plug_uid'] = ''
+        }
+    },
+    // 购买了哪些APP
+    // 这里的参数都是 和 应用中心 的应用信息一一对应
+    ['app'] = new JArray
+    {
+        new JObject
+        {
+            ['id'] = '',
+            ['name'] = '',
+            ['status'] = '1', // 这里必须存在且是数字
+            ['enabled'] = '1', // 这里必须存在且是数字
+            ['type'] = '1', // 这里必须存在且是数字
+            ['path'] = '',
+            ['imgUrl'] = '',
+            ['remark'] = '',
+            ['helpUrl'] = '',
+            ['downloadUrl'] = '',
+            ['updateUrl'] = '',
+            ['className'] = '',
+            ['version'] = '',
+            ['price'] = '999', // 这里必须存在且是数字
+            ['freeDay'] = '1', // 这里必须存在且是数字
+            ['size'] = ''
+        }
+    },
+    // 公告
+    // url 存在，软件运行，打开网页
+    // msg 存在，软件运行，打开弹窗
+    // close 等于 true，软件运行后自动关闭
+    // cap 不清楚，忘了
+    ['msg'] = new JObject
+    {
+        ['msg'] = '',
+        ['cap'] = '',
+        ['url'] = '',
+        ['close'] = false
+    }
+};
+
+data = jsonObject;
+```
+</details>
 
 ### 3. 应用免费下载
 
@@ -580,15 +807,38 @@ public ApiResult CheckAppEnable()
 }
 ```
 
-### 4. 修改会员状态为永久会员
+### 4. 修改会员信息
 
-> 在修改登录结果时，将'status'设置为1即可
+1.  找到`RegResult`类
 
-![image](https://github.com/user-attachments/assets/bac5b871-f336-44ea-91a4-ed0115139a81)
+![image](https://github.com/user-attachments/assets/e5b96599-7ffb-49ff-88bc-9b7c6f441ae3)
 
-```c#
-jobject4['status'] = '1';
+2. 修改`UpdateDataFromJson`方法
+
+```diff
+  public void UpdateDataFromJson(JToken data)
+  {
+	// 剩余可用积分
+- 	this.SharePoint = (int)data['share'];
++   this.SharePoint = 9999;
+	this.ExpireDate = data['expire_date'].ToString();
+	// 积分总数
+- 	this.TotalSharePoint = (int)data['total_share'];
++   this.TotalSharePoint = 9999;
+	// 分享数量
+- 	this.ShareUserCnt = (int)data['share_ucnt'];
++   this.ShareUserCnt = 456;
+	// 不清楚
+- 	this.PayPoint = ((data['pay_point'] == null) ? 5 : ((int)data['pay_point']));
++   this.PayPoint = 999;
+	// 用户状态
+- 	this.Status = (UserStatus)(int)data['status'];
++	this.Status = UserStatus.Member;
+  }
 ```
+
+![image](https://github.com/user-attachments/assets/d37554a2-e0d7-4273-bf99-7f56ba65872e)
+
 
 ### 5. 插件免费下载(待完成)
 
@@ -773,77 +1023,92 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>都是通过传入的内容解析获取的<br>
 构建一个虚假登录内容用于解析</p>
 </blockquote>
-<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">JObject</span> <span class="pl-s1">jobject</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JObject<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>user_name<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>52钓鱼崽<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>user_create_time<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> DateTime<span class="pl-kos">.</span>Now<span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>phone<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1234567890<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>nick_name<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>52钓鱼崽<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>nick_flag<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>sex<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>head_img<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>http://example.com/image.jpg<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>status<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>active_id<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>A123<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>last_version<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>123<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>update_version<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>456<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>expire_date<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> DateTime<span class="pl-kos">.</span>Now<span class="pl-kos">.</span><span class="pl-en">AddDays</span><span class="pl-kos">(</span><span class="pl-c1">30.0</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>qq_group<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>123456<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>channel<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>Web<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>chapter_ai_url<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>http://example.com/ai<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>member_share_cnt<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">5</span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>point_day<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">50</span><span class="pl-kos">;</span>
-<span class="pl-c">// 这里是下拉框更多</span>
-<span class="pl-smi">string</span> <span class="pl-s1">text3</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>append<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-<span class="pl-smi">JArray</span> <span class="pl-s1">jarray</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JArray<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-<span class="pl-smi">JObject</span> <span class="pl-s1">jobject2</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JObject<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-jobject2<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>url<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject2<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>title<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>52钓鱼崽 破解<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jarray<span class="pl-kos">.</span><span class="pl-en">Add</span><span class="pl-kos">(</span>jobject2<span class="pl-kos">)</span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span>text3<span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s1">jarray</span><span class="pl-kos">;</span>
-<span class="pl-c">// 好像是和 nick_name 字段有关</span>
-<span class="pl-smi">string</span> <span class="pl-s1">text4</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>site<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-<span class="pl-smi">JArray</span> <span class="pl-s1">jarray2</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JArray<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-<span class="pl-smi">JObject</span> <span class="pl-s1">jobject3</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JObject<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-jobject3<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>url<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject3<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>title<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject3<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>plug_uid<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jarray2<span class="pl-kos">.</span><span class="pl-en">Add</span><span class="pl-kos">(</span>jobject3<span class="pl-kos">)</span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span>text4<span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s1">jarray2</span><span class="pl-kos">;</span>
-<span class="pl-c">// 购买了哪些APP</span>
-<span class="pl-c">// 这里的参数都是 和 应用中心 的应用信息一一对应</span>
-<span class="pl-smi">string</span> <span class="pl-s1">text5</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>app<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-<span class="pl-smi">JArray</span> <span class="pl-s1">jarray3</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JArray<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-<span class="pl-smi">JObject</span> <span class="pl-s1">jobject4</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JObject<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>id<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> Guid<span class="pl-kos">.</span><span class="pl-en">NewGuid</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>name<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>52钓鱼崽<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>status<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>enabled<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>type<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>path<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>52钓鱼崽<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>imgUrl<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>https://static.52pojie.cn/static/image/common/logo.png<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>remark<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>52钓鱼崽<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>helpUrl<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>https://www.52pojie.cn/<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>downloadUrl<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>https://www.52pojie.cn/<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>updateUrl<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>https://www.52pojie.cn/<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>className<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>52钓鱼崽<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>version<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s1">text</span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>price<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>999<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>freeDay<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>size<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>520<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jarray3<span class="pl-kos">.</span><span class="pl-en">Add</span><span class="pl-kos">(</span>jobject4<span class="pl-kos">)</span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span>text5<span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s1">jarray3</span><span class="pl-kos">;</span>
-<span class="pl-c">// 公告</span>
-<span class="pl-c">// url 存在，软件运行，打开网页</span>
-<span class="pl-c">// msg 存在，软件运行，打开弹窗</span>
-<span class="pl-c">// close 等于 true，软件运行后自动关闭</span>
-<span class="pl-c">// cap 不清楚，忘了</span>
-<span class="pl-smi">string</span> <span class="pl-s1">text6</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>msg<span class="pl-s">"</span></span><span class="pl-kos">;</span>
-<span class="pl-smi">JObject</span> <span class="pl-s1">jobject5</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JObject<span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-jobject5<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>msg<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject5<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>cap<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject5<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>url<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">;</span>
-jobject5<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>close<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">false</span><span class="pl-kos">;</span>
-jobject<span class="pl-kos">[</span>text6<span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s1">jobject5</span><span class="pl-kos">;</span>
-<span class="pl-s1">data</span> <span class="pl-c1">=</span> <span class="pl-s1">jobject</span><span class="pl-kos">;</span></pre></div>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">JObject</span> <span class="pl-s1">jsonObject</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JObject
+<span class="pl-kos">{</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>user_name<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>52钓鱼崽<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>user_create_time<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> DateTime<span class="pl-kos">.</span>Now<span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>phone<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1234567890<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>nick_name<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>52钓鱼崽<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>nick_flag<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>sex<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>head_img<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>http://read.home133.com/img/icon/picture.svg<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>status<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>active_id<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>A123<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>last_version<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>123<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>update_version<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>456<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>expire_date<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> DateTime<span class="pl-kos">.</span>Now<span class="pl-kos">.</span><span class="pl-en">AddDays</span><span class="pl-kos">(</span><span class="pl-c1">30.0</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>qq_group<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>123456<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>channel<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>Web<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>chapter_ai_url<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>https://acg-q.github.io/new_blog/post/12.html<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>member_share_cnt<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">5</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>point_day<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">50</span><span class="pl-kos">,</span>
+    <span class="pl-c">// 更多 选项</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>append<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JArray
+    <span class="pl-kos">{</span>
+        <span class="pl-k">new</span> JObject
+        <span class="pl-kos">{</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>url<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>title<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>52钓鱼崽 破解<span class="pl-s">"</span></span>
+        <span class="pl-kos">}</span>
+    <span class="pl-kos">}</span><span class="pl-kos">,</span>
+    <span class="pl-c">// 这里应该是插件</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>site<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JArray
+    <span class="pl-kos">{</span>
+        <span class="pl-k">new</span> JObject
+        <span class="pl-kos">{</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>url<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>title<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>plug_uid<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span>
+        <span class="pl-kos">}</span>
+    <span class="pl-kos">}</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>site<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JArray
+    <span class="pl-kos">{</span>
+        <span class="pl-k">new</span> JObject
+        <span class="pl-kos">{</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>url<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>title<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>plug_uid<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span>
+        <span class="pl-kos">}</span>
+    <span class="pl-kos">}</span><span class="pl-kos">,</span>
+    <span class="pl-c">// 购买了哪些APP</span>
+    <span class="pl-c">// 这里的参数都是 和 应用中心 的应用信息一一对应</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>app<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JArray
+    <span class="pl-kos">{</span>
+        <span class="pl-k">new</span> JObject
+        <span class="pl-kos">{</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>id<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>name<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>status<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-c">// 这里必须存在且是数字</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>enabled<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-c">// 这里必须存在且是数字</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>type<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-c">// 这里必须存在且是数字</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>path<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>imgUrl<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>remark<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>helpUrl<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>downloadUrl<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>updateUrl<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>className<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>version<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>price<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>999<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-c">// 这里必须存在且是数字</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>freeDay<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-c">// 这里必须存在且是数字</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>size<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span>
+        <span class="pl-kos">}</span>
+    <span class="pl-kos">}</span><span class="pl-kos">,</span>
+    <span class="pl-c">// 公告</span>
+    <span class="pl-c">// url 存在，软件运行，打开网页</span>
+    <span class="pl-c">// msg 存在，软件运行，打开弹窗</span>
+    <span class="pl-c">// close 等于 true，软件运行后自动关闭</span>
+    <span class="pl-c">// cap 不清楚，忘了</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>msg<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JObject
+    <span class="pl-kos">{</span>
+        <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>msg<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+        <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>cap<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+        <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>url<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+        <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>close<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">false</span>
+    <span class="pl-kos">}</span>
+<span class="pl-kos">}</span><span class="pl-kos">;</span>
+
+<span class="pl-s1">data</span> <span class="pl-c1">=</span> <span class="pl-s1">jsonObject</span><span class="pl-kos">;</span></pre></div>
 <ol start="3">
 <li>保持软件更新(不过这里没有测试过...)</li>
 </ol>
@@ -851,20 +1116,103 @@ jobject<span class="pl-kos">[</span>text6<span class="pl-kos">]</span> <span cla
 <p>把<code class="notranslate">AutoLogin</code>函数里的<code class="notranslate">ApiResult apiResult = Util.GetApiResult(Constants.API_PreRegInfo, 10);</code>复制一份<br>
 将获取到的内容通过Data传递下去</p>
 </blockquote>
-<div class="highlight highlight-source-diff"><pre class="notranslate">  ApiResult apiResult2 = Util.GetApiResult(Constants.API_PreRegInfo, 10);
-<span class="pl-mi1"><span class="pl-mi1">+</span> ApiResult apiResult3 = Util.GetApiResult(Constants.API_AutoLogin, 10);</span>
-<span class="pl-mi1"><span class="pl-mi1">+</span> apiResult3.Data = apiResult2.Data;</span>
-<span class="pl-mi1"><span class="pl-mi1">+</span> apiResult3.Status = 200;</span>
-  if (apiResult3.Status == 200)</pre></div>
+<div class="highlight highlight-source-diff"><pre class="notranslate">  ApiResult apiResult2 = Util.GetApiResult(Constants.API_AutoLogin, 10);
+<span class="pl-mi1"><span class="pl-mi1">+</span> ApiResult apiResult = Util.GetApiResult(Constants.API_PreRegInfo, 10);</span>
+<span class="pl-mi1"><span class="pl-mi1">+</span> apiResult2.Data = apiResult.Data;</span>
+<span class="pl-mi1"><span class="pl-mi1">+</span> apiResult2.Status = 200;</span>
+  if (apiResult2.Status == 200)</pre></div>
 <blockquote>
 <p>在<code class="notranslate">UpdateDataFromJson</code>里面提取出<code class="notranslate">last_version</code>和<code class="notranslate">update_version</code></p>
 </blockquote>
 <div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">string</span> <span class="pl-s1">text</span> <span class="pl-c1">=</span> data<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>last_version<span class="pl-s">"</span></span><span class="pl-kos">]</span><span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 <span class="pl-smi">string</span> <span class="pl-s1">text2</span> <span class="pl-c1">=</span> data<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>update_version<span class="pl-s">"</span></span><span class="pl-kos">]</span><span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span></pre></div>
-<div class="highlight highlight-source-diff"><pre class="notranslate">jobject["last_version"] = "123";
-jobject["update_version"] = "456";
-jobject["last_version"] = text;
-jobject["update_version"] = text2;</pre></div>
+<div class="highlight highlight-source-diff"><pre class="notranslate"><span class="pl-md"><span class="pl-md">-</span> ["last_version"] = "123",</span>
+<span class="pl-md"><span class="pl-md">-</span> ["update_version"] = "456",</span>
+<span class="pl-mi1"><span class="pl-mi1">+</span> ["last_version"] = text,</span>
+<span class="pl-mi1"><span class="pl-mi1">+</span> ["update_version"]  = text2,</span></pre></div>
+<details>
+<summary>完整的代码</summary>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-smi">string</span> <span class="pl-s1">text</span> <span class="pl-c1">=</span> data<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>last_version<span class="pl-s">"</span></span><span class="pl-kos">]</span><span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-smi">string</span> <span class="pl-s1">text2</span> <span class="pl-c1">=</span> data<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>update_version<span class="pl-s">"</span></span><span class="pl-kos">]</span><span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+
+<span class="pl-smi">JObject</span> <span class="pl-s1">jsonObject</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JObject
+<span class="pl-kos">{</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>user_name<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>52钓鱼崽<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>user_create_time<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> DateTime<span class="pl-kos">.</span>Now<span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>phone<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1234567890<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>nick_name<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>52钓鱼崽<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>nick_flag<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>sex<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>head_img<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>http://read.home133.com/img/icon/picture.svg<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>status<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>active_id<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>A123<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>last_version<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s1">text</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>update_version<span class="pl-s">"</span></span><span class="pl-kos">]</span>  <span class="pl-c1">=</span> <span class="pl-s1">text2</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>expire_date<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> DateTime<span class="pl-kos">.</span>Now<span class="pl-kos">.</span><span class="pl-en">AddDays</span><span class="pl-kos">(</span><span class="pl-c1">30.0</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>qq_group<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>123456<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>channel<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>Web<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>chapter_ai_url<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>https://acg-q.github.io/new_blog/post/12.html<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>member_share_cnt<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">5</span><span class="pl-kos">,</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>point_day<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">50</span><span class="pl-kos">,</span>
+    <span class="pl-c">// 更多 选项</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>append<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JArray
+    <span class="pl-kos">{</span>
+        <span class="pl-k">new</span> JObject
+        <span class="pl-kos">{</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>url<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>https://acg-q.github.io/new_blog/post/12.html<span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>title<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>52钓鱼崽 破解<span class="pl-s">"</span></span>
+        <span class="pl-kos">}</span>
+    <span class="pl-kos">}</span><span class="pl-kos">,</span>
+    <span class="pl-c">// 这里应该是插件</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>site<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JArray
+    <span class="pl-kos">{</span>
+        <span class="pl-k">new</span> JObject
+        <span class="pl-kos">{</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>url<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>title<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>plug_uid<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span>
+        <span class="pl-kos">}</span>
+    <span class="pl-kos">}</span><span class="pl-kos">,</span>
+    <span class="pl-c">// 购买了哪些APP</span>
+    <span class="pl-c">// 这里的参数都是 和 应用中心 的应用信息一一对应</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>app<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JArray
+    <span class="pl-kos">{</span>
+        <span class="pl-k">new</span> JObject
+        <span class="pl-kos">{</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>id<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>name<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>status<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-c">// 这里必须存在且是数字</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>enabled<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-c">// 这里必须存在且是数字</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>type<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-c">// 这里必须存在且是数字</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>path<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>imgUrl<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>remark<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>helpUrl<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>downloadUrl<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>updateUrl<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>className<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>version<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>price<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>999<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-c">// 这里必须存在且是数字</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>freeDay<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1<span class="pl-s">"</span></span><span class="pl-kos">,</span> <span class="pl-c">// 这里必须存在且是数字</span>
+            <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>size<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span>
+        <span class="pl-kos">}</span>
+    <span class="pl-kos">}</span><span class="pl-kos">,</span>
+    <span class="pl-c">// 公告</span>
+    <span class="pl-c">// url 存在，软件运行，打开网页</span>
+    <span class="pl-c">// msg 存在，软件运行，打开弹窗</span>
+    <span class="pl-c">// close 等于 true，软件运行后自动关闭</span>
+    <span class="pl-c">// cap 不清楚，忘了</span>
+    <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>msg<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-k">new</span> JObject
+    <span class="pl-kos">{</span>
+        <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>msg<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+        <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>cap<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+        <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>url<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span><span class="pl-s">"</span></span><span class="pl-kos">,</span>
+        <span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>close<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-c1">false</span>
+    <span class="pl-kos">}</span>
+<span class="pl-kos">}</span><span class="pl-kos">;</span>
+
+<span class="pl-s1">data</span> <span class="pl-c1">=</span> <span class="pl-s1">jsonObject</span><span class="pl-kos">;</span></pre></div>
+</details>
 <h3>3. 应用免费下载</h3>
 <ol>
 <li>找到<code class="notranslate">AddAppBox</code>这个函数</li>
@@ -922,12 +1270,34 @@ jobject["update_version"] = text2;</pre></div>
 <span class="pl-mi1"><span class="pl-mi1">+</span>    apiResult.Status = 200;</span>
 <span class="pl-mi1"><span class="pl-mi1">+</span>    return apiResult;</span>
 }</pre></div>
-<h3>4. 修改会员状态为永久会员</h3>
-<blockquote>
-<p>在修改登录结果时，将"status"设置为1即可</p>
-</blockquote>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/bac5b871-f336-44ea-91a4-ed0115139a81"><img src="https://github.com/user-attachments/assets/bac5b871-f336-44ea-91a4-ed0115139a81" alt="image" style="max-width: 100%;"></a></p>
-<div class="highlight highlight-source-cs"><pre class="notranslate">jobject4<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>status<span class="pl-s">"</span></span><span class="pl-kos">]</span> <span class="pl-c1">=</span> <span class="pl-s"><span class="pl-s">"</span>1<span class="pl-s">"</span></span><span class="pl-kos">;</span></pre></div>
+<h3>4. 修改会员信息</h3>
+<ol>
+<li>找到<code class="notranslate">RegResult</code>类</li>
+</ol>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/e5b96599-7ffb-49ff-88bc-9b7c6f441ae3"><img src="https://github.com/user-attachments/assets/e5b96599-7ffb-49ff-88bc-9b7c6f441ae3" alt="image" style="max-width: 100%;"></a></p>
+<ol start="2">
+<li>修改<code class="notranslate">UpdateDataFromJson</code>方法</li>
+</ol>
+<div class="highlight highlight-source-diff"><pre class="notranslate">  public void UpdateDataFromJson(JToken data)
+  {
+	// 剩余可用积分
+<span class="pl-md"><span class="pl-md">-</span> 	this.SharePoint = (int)data["share"];</span>
+<span class="pl-mi1"><span class="pl-mi1">+</span>   this.SharePoint = 9999;</span>
+	this.ExpireDate = data["expire_date"].ToString();
+	// 积分总数
+<span class="pl-md"><span class="pl-md">-</span> 	this.TotalSharePoint = (int)data["total_share"];</span>
+<span class="pl-mi1"><span class="pl-mi1">+</span>   this.TotalSharePoint = 9999;</span>
+	// 分享数量
+<span class="pl-md"><span class="pl-md">-</span> 	this.ShareUserCnt = (int)data["share_ucnt"];</span>
+<span class="pl-mi1"><span class="pl-mi1">+</span>   this.ShareUserCnt = 456;</span>
+	// 不清楚
+<span class="pl-md"><span class="pl-md">-</span> 	this.PayPoint = ((data["pay_point"] == null) ? 5 : ((int)data["pay_point"]));</span>
+<span class="pl-mi1"><span class="pl-mi1">+</span>   this.PayPoint = 999;</span>
+	// 用户状态
+<span class="pl-md"><span class="pl-md">-</span> 	this.Status = (UserStatus)(int)data["status"];</span>
+<span class="pl-mi1"><span class="pl-mi1">+</span>	this.Status = UserStatus.Member;</span>
+  }</pre></div>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/d37554a2-e0d7-4273-bf99-7f56ba65872e"><img src="https://github.com/user-attachments/assets/d37554a2-e0d7-4273-bf99-7f56ba65872e" alt="image" style="max-width: 100%;"></a></p>
 <h3>5. 插件免费下载(待完成)</h3>
 <h1>相关资源</h1>
 <p>C#反编译工具: <a href="https://github.com/dnSpyEx/dnSpy">https://github.com/dnSpyEx/dnSpy</a><br>

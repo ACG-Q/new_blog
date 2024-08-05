@@ -118,87 +118,102 @@ public void UpdateDataFromJson(JToken data)
 > 构建一个虚假登录内容用于解析
 
 ```c#
-JObject jobject = new JObject();
-jobject["user_name"] = "52钓鱼崽";
-jobject["user_create_time"] = DateTime.Now.ToString();
-jobject["phone"] = "1234567890";
-jobject["nick_name"] = "52钓鱼崽";
-jobject["nick_flag"] = 0;
-jobject["sex"] = 0;
-jobject["head_img"] = "http://example.com/image.jpg";
-jobject["status"] = 1;
-jobject["active_id"] = "A123";
-jobject["last_version"] = "123";
-jobject["update_version"] = "456";
-jobject["expire_date"] = DateTime.Now.AddDays(30.0).ToString();
-jobject["qq_group"] = "123456";
-jobject["channel"] = "Web";
-jobject["chapter_ai_url"] = "http://example.com/ai";
-jobject["member_share_cnt"] = 5;
-jobject["point_day"] = 50;
-// 这里是下拉框更多
-string text3 = "append";
-JArray jarray = new JArray();
-JObject jobject2 = new JObject();
-jobject2["url"] = "";
-jobject2["title"] = "52钓鱼崽 破解";
-jarray.Add(jobject2);
-jobject[text3] = jarray;
-// 好像是和 nick_name 字段有关
-string text4 = "site";
-JArray jarray2 = new JArray();
-JObject jobject3 = new JObject();
-jobject3["url"] = "";
-jobject3["title"] = "";
-jobject3["plug_uid"] = "";
-jarray2.Add(jobject3);
-jobject[text4] = jarray2;
-// 购买了哪些APP
-// 这里的参数都是 和 应用中心 的应用信息一一对应
-string text5 = "app";
-JArray jarray3 = new JArray();
-JObject jobject4 = new JObject();
-jobject4["id"] = Guid.NewGuid().ToString();
-jobject4["name"] = "52钓鱼崽";
-jobject4["status"] = "1";
-jobject4["enabled"] = "1";
-jobject4["type"] = "1";
-jobject4["path"] = "52钓鱼崽";
-jobject4["imgUrl"] = "https://static.52pojie.cn/static/image/common/logo.png";
-jobject4["remark"] = "52钓鱼崽";
-jobject4["helpUrl"] = "https://www.52pojie.cn/";
-jobject4["downloadUrl"] = "https://www.52pojie.cn/";
-jobject4["updateUrl"] = "https://www.52pojie.cn/";
-jobject4["className"] = "52钓鱼崽";
-jobject4["version"] = text;
-jobject4["price"] = "999";
-jobject4["freeDay"] = "1";
-jobject4["size"] = "520";
-jarray3.Add(jobject4);
-jobject[text5] = jarray3;
-// 公告
-// url 存在，软件运行，打开网页
-// msg 存在，软件运行，打开弹窗
-// close 等于 true，软件运行后自动关闭
-// cap 不清楚，忘了
-string text6 = "msg";
-JObject jobject5 = new JObject();
-jobject5["msg"] = "";
-jobject5["cap"] = "";
-jobject5["url"] = "";
-jobject5["close"] = false;
-jobject[text6] = jobject5;
-data = jobject;
+JObject jsonObject = new JObject
+{
+    ["user_name"] = "52钓鱼崽",
+    ["user_create_time"] = DateTime.Now.ToString(),
+    ["phone"] = "1234567890",
+    ["nick_name"] = "52钓鱼崽",
+    ["nick_flag"] = 0,
+    ["sex"] = 0,
+    ["head_img"] = "http://read.home133.com/img/icon/picture.svg",
+    ["status"] = 1,
+    ["active_id"] = "A123",
+    ["last_version"] = "123",
+    ["update_version"] = "456",
+    ["expire_date"] = DateTime.Now.AddDays(30.0).ToString(),
+    ["qq_group"] = "123456",
+    ["channel"] = "Web",
+    ["chapter_ai_url"] = "https://acg-q.github.io/new_blog/post/12.html",
+    ["member_share_cnt"] = 5,
+    ["point_day"] = 50,
+    // 更多 选项
+    ["append"] = new JArray
+    {
+        new JObject
+        {
+            ["url"] = "",
+            ["title"] = "52钓鱼崽 破解"
+        }
+    },
+    // 这里应该是插件
+    ["site"] = new JArray
+    {
+        new JObject
+        {
+            ["url"] = "",
+            ["title"] = "",
+            ["plug_uid"] = ""
+        }
+    },
+    ["site"] = new JArray
+    {
+        new JObject
+        {
+            ["url"] = "",
+            ["title"] = "",
+            ["plug_uid"] = ""
+        }
+    },
+    // 购买了哪些APP
+    // 这里的参数都是 和 应用中心 的应用信息一一对应
+    ["app"] = new JArray
+    {
+        new JObject
+        {
+            ["id"] = "",
+            ["name"] = "",
+            ["status"] = "1", // 这里必须存在且是数字
+            ["enabled"] = "1", // 这里必须存在且是数字
+            ["type"] = "1", // 这里必须存在且是数字
+            ["path"] = "",
+            ["imgUrl"] = "",
+            ["remark"] = "",
+            ["helpUrl"] = "",
+            ["downloadUrl"] = "",
+            ["updateUrl"] = "",
+            ["className"] = "",
+            ["version"] = "",
+            ["price"] = "999", // 这里必须存在且是数字
+            ["freeDay"] = "1", // 这里必须存在且是数字
+            ["size"] = ""
+        }
+    },
+    // 公告
+    // url 存在，软件运行，打开网页
+    // msg 存在，软件运行，打开弹窗
+    // close 等于 true，软件运行后自动关闭
+    // cap 不清楚，忘了
+    ["msg"] = new JObject
+    {
+        ["msg"] = "",
+        ["cap"] = "",
+        ["url"] = "",
+        ["close"] = false
+    }
+};
+
+data = jsonObject;
 ```
 3. 保持软件更新(不过这里没有测试过...)
 > 把`AutoLogin`函数里的`ApiResult apiResult = Util.GetApiResult(Constants.API_PreRegInfo, 10);`复制一份
 > 将获取到的内容通过Data传递下去
 ```diff
-  ApiResult apiResult2 = Util.GetApiResult(Constants.API_PreRegInfo, 10);
-+ ApiResult apiResult3 = Util.GetApiResult(Constants.API_AutoLogin, 10);
-+ apiResult3.Data = apiResult2.Data;
-+ apiResult3.Status = 200;
-  if (apiResult3.Status == 200)
+  ApiResult apiResult2 = Util.GetApiResult(Constants.API_AutoLogin, 10);
++ ApiResult apiResult = Util.GetApiResult(Constants.API_PreRegInfo, 10);
++ apiResult2.Data = apiResult.Data;
++ apiResult2.Status = 200;
+  if (apiResult2.Status == 200)
 ```
 > 在`UpdateDataFromJson`里面提取出`last_version`和`update_version`
 
@@ -208,11 +223,98 @@ string text2 = data["update_version"].ToString();
 ```
 
 ```diff
-jobject["last_version"] = "123";
-jobject["update_version"] = "456";
-jobject["last_version"] = text;
-jobject["update_version"] = text2;
+- ["last_version"] = "123",
+- ["update_version"] = "456",
++ ["last_version"] = text,
++ ["update_version"]  = text2,
 ```
+
+<details>
+<summary>完整的代码</summary>
+
+```c#
+string text = data["last_version"].ToString();
+string text2 = data["update_version"].ToString();
+
+JObject jsonObject = new JObject
+{
+    ["user_name"] = "52钓鱼崽",
+    ["user_create_time"] = DateTime.Now.ToString(),
+    ["phone"] = "1234567890",
+    ["nick_name"] = "52钓鱼崽",
+    ["nick_flag"] = 0,
+    ["sex"] = 0,
+    ["head_img"] = "http://read.home133.com/img/icon/picture.svg",
+    ["status"] = 1,
+    ["active_id"] = "A123",
+    ["last_version"] = text,
+    ["update_version"]  = text2,
+    ["expire_date"] = DateTime.Now.AddDays(30.0).ToString(),
+    ["qq_group"] = "123456",
+    ["channel"] = "Web",
+    ["chapter_ai_url"] = "https://acg-q.github.io/new_blog/post/12.html",
+    ["member_share_cnt"] = 5,
+    ["point_day"] = 50,
+    // 更多 选项
+    ["append"] = new JArray
+    {
+        new JObject
+        {
+            ["url"] = "https://acg-q.github.io/new_blog/post/12.html",
+            ["title"] = "52钓鱼崽 破解"
+        }
+    },
+    // 这里应该是插件
+    ["site"] = new JArray
+    {
+        new JObject
+        {
+            ["url"] = "",
+            ["title"] = "",
+            ["plug_uid"] = ""
+        }
+    },
+    // 购买了哪些APP
+    // 这里的参数都是 和 应用中心 的应用信息一一对应
+    ["app"] = new JArray
+    {
+        new JObject
+        {
+            ["id"] = "",
+            ["name"] = "",
+            ["status"] = "1", // 这里必须存在且是数字
+            ["enabled"] = "1", // 这里必须存在且是数字
+            ["type"] = "1", // 这里必须存在且是数字
+            ["path"] = "",
+            ["imgUrl"] = "",
+            ["remark"] = "",
+            ["helpUrl"] = "",
+            ["downloadUrl"] = "",
+            ["updateUrl"] = "",
+            ["className"] = "",
+            ["version"] = "",
+            ["price"] = "999", // 这里必须存在且是数字
+            ["freeDay"] = "1", // 这里必须存在且是数字
+            ["size"] = ""
+        }
+    },
+    // 公告
+    // url 存在，软件运行，打开网页
+    // msg 存在，软件运行，打开弹窗
+    // close 等于 true，软件运行后自动关闭
+    // cap 不清楚，忘了
+    ["msg"] = new JObject
+    {
+        ["msg"] = "",
+        ["cap"] = "",
+        ["url"] = "",
+        ["close"] = false
+    }
+};
+
+data = jsonObject;
+```
+</details>
 
 ### 3. 应用免费下载
 
@@ -272,15 +374,38 @@ public ApiResult CheckAppEnable()
 }
 ```
 
-### 4. 修改会员状态为永久会员
+### 4. 修改会员信息
 
-> 在修改登录结果时，将"status"设置为1即可
+1.  找到`RegResult`类
 
-![image](https://github.com/user-attachments/assets/bac5b871-f336-44ea-91a4-ed0115139a81)
+![image](https://github.com/user-attachments/assets/e5b96599-7ffb-49ff-88bc-9b7c6f441ae3)
 
-```c#
-jobject4["status"] = "1";
+2. 修改`UpdateDataFromJson`方法
+
+```diff
+  public void UpdateDataFromJson(JToken data)
+  {
+	// 剩余可用积分
+- 	this.SharePoint = (int)data["share"];
++   this.SharePoint = 9999;
+	this.ExpireDate = data["expire_date"].ToString();
+	// 积分总数
+- 	this.TotalSharePoint = (int)data["total_share"];
++   this.TotalSharePoint = 9999;
+	// 分享数量
+- 	this.ShareUserCnt = (int)data["share_ucnt"];
++   this.ShareUserCnt = 456;
+	// 不清楚
+- 	this.PayPoint = ((data["pay_point"] == null) ? 5 : ((int)data["pay_point"]));
++   this.PayPoint = 999;
+	// 用户状态
+- 	this.Status = (UserStatus)(int)data["status"];
++	this.Status = UserStatus.Member;
+  }
 ```
+
+![image](https://github.com/user-attachments/assets/d37554a2-e0d7-4273-bf99-7f56ba65872e)
+
 
 ### 5. 插件免费下载(待完成)
 
