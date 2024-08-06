@@ -448,13 +448,44 @@ public ApiResult CheckAppEnable()
 ![image](https://github.com/user-attachments/assets/d37554a2-e0d7-4273-bf99-7f56ba65872e)
 
 
-### 5. 插件免费下载(待完成)
+### 5. 插件免费下载(目前无法破解)
 
+> [!TIP]
+> 主要关键还是在`DownPlug`方法中
+> 即便通过给`apiResult.Status`赋值200，但是`apiResult.Data["parse_info"]`和`apiResult.Data["append_info"]`的缺失，会导致程序无法往下推进
+
+```c#
+private void DownPlug(object[] objs)
+{
+	ApiResult apiResult = Util.GetApiResult(Constants.API_PlugDownloadUrl + "?plugID=" + this.plug.UID, 3);
+	if (apiResult.Status == 200)
+	{
+		this.plug.LocalFlag = 1;
+		this.plug.ParseInfo = apiResult.Data["parse_info"].ToString();
+		this.plug.AppendInfo = apiResult.Data["append_info"].ToString();
+		DataProcess.UpdateUrlPlug(this.plug);
+		base.Dispatcher.Invoke(delegate
+		{
+			this.IsChanged = true;
+			base.Close();
+		});
+		return;
+	}
+	this.loadingW.ShowMsg(apiResult.Msg, 3);
+}
+```
+
+> 或许只有研究一下，如何刷分享值了
 
 # 相关资源
+
+> [!NOTE] 
+> 在线版: v1.2.0.5
+> 离线版: v1.2.0.5
 
 C#反编译工具: https://github.com/dnSpyEx/dnSpy
 [![dnSpyEx/dnSpy - GitHub](https://gh-card.dev/repos/dnSpyEx/dnSpy.svg)](https://github.com/dnSpyEx/dnSpy)
 
 [Read133_Offline.zip](https://github.com/user-attachments/files/16489657/Read133_Offline.zip)
 
+[read133_pro.zip](https://github.com/user-attachments/files/16504182/read133_pro.zip)

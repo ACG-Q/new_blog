@@ -460,16 +460,47 @@ public ApiResult CheckAppEnable()
 ![image](https://github.com/user-attachments/assets/d37554a2-e0d7-4273-bf99-7f56ba65872e)
 
 
-### 5. 插件免费下载(待完成)
+### 5. 插件免费下载(目前无法破解)
 
+> [!TIP]
+> 主要关键还是在`DownPlug`方法中
+> 即便通过给`apiResult.Status`赋值200，但是`apiResult.Data['parse_info']`和`apiResult.Data['append_info']`的缺失，会导致程序无法往下推进
+
+```c#
+private void DownPlug(object[] objs)
+{
+	ApiResult apiResult = Util.GetApiResult(Constants.API_PlugDownloadUrl + '?plugID=' + this.plug.UID, 3);
+	if (apiResult.Status == 200)
+	{
+		this.plug.LocalFlag = 1;
+		this.plug.ParseInfo = apiResult.Data['parse_info'].ToString();
+		this.plug.AppendInfo = apiResult.Data['append_info'].ToString();
+		DataProcess.UpdateUrlPlug(this.plug);
+		base.Dispatcher.Invoke(delegate
+		{
+			this.IsChanged = true;
+			base.Close();
+		});
+		return;
+	}
+	this.loadingW.ShowMsg(apiResult.Msg, 3);
+}
+```
+
+> 或许只有研究一下，如何刷分享值了
 
 # 相关资源
+
+> [!NOTE] 
+> 在线版: v1.2.0.5
+> 离线版: v1.2.0.5
 
 C#反编译工具: https://github.com/dnSpyEx/dnSpy
 [![dnSpyEx/dnSpy - GitHub](https://gh-card.dev/repos/dnSpyEx/dnSpy.svg)](https://github.com/dnSpyEx/dnSpy)
 
 [Read133_Offline.zip](https://github.com/user-attachments/files/16489657/Read133_Offline.zip)
 
+[read133_pro.zip](https://github.com/user-attachments/files/16504182/read133_pro.zip)
 。">
 <meta property="og:title" content="[C#] 极简·单行阅读器">
 <meta property="og:description" content="> [!NOTE]
@@ -922,16 +953,47 @@ public ApiResult CheckAppEnable()
 ![image](https://github.com/user-attachments/assets/d37554a2-e0d7-4273-bf99-7f56ba65872e)
 
 
-### 5. 插件免费下载(待完成)
+### 5. 插件免费下载(目前无法破解)
 
+> [!TIP]
+> 主要关键还是在`DownPlug`方法中
+> 即便通过给`apiResult.Status`赋值200，但是`apiResult.Data['parse_info']`和`apiResult.Data['append_info']`的缺失，会导致程序无法往下推进
+
+```c#
+private void DownPlug(object[] objs)
+{
+	ApiResult apiResult = Util.GetApiResult(Constants.API_PlugDownloadUrl + '?plugID=' + this.plug.UID, 3);
+	if (apiResult.Status == 200)
+	{
+		this.plug.LocalFlag = 1;
+		this.plug.ParseInfo = apiResult.Data['parse_info'].ToString();
+		this.plug.AppendInfo = apiResult.Data['append_info'].ToString();
+		DataProcess.UpdateUrlPlug(this.plug);
+		base.Dispatcher.Invoke(delegate
+		{
+			this.IsChanged = true;
+			base.Close();
+		});
+		return;
+	}
+	this.loadingW.ShowMsg(apiResult.Msg, 3);
+}
+```
+
+> 或许只有研究一下，如何刷分享值了
 
 # 相关资源
+
+> [!NOTE] 
+> 在线版: v1.2.0.5
+> 离线版: v1.2.0.5
 
 C#反编译工具: https://github.com/dnSpyEx/dnSpy
 [![dnSpyEx/dnSpy - GitHub](https://gh-card.dev/repos/dnSpyEx/dnSpy.svg)](https://github.com/dnSpyEx/dnSpy)
 
 [Read133_Offline.zip](https://github.com/user-attachments/files/16489657/Read133_Offline.zip)
 
+[read133_pro.zip](https://github.com/user-attachments/files/16504182/read133_pro.zip)
 。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ACG-Q.github.io/new_blog/post/12.html">
@@ -1420,11 +1482,39 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-mi1"><span class="pl-mi1">+</span>	this.Status = UserStatus.Member;</span>
   }</pre></div>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/d37554a2-e0d7-4273-bf99-7f56ba65872e"><img src="https://github.com/user-attachments/assets/d37554a2-e0d7-4273-bf99-7f56ba65872e" alt="image" style="max-width: 100%;"></a></p>
-<h3>5. 插件免费下载(待完成)</h3>
+<h3>5. 插件免费下载(目前无法破解)</h3>
+<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>主要关键还是在<code class="notranslate">DownPlug</code>方法中<br>
+即便通过给<code class="notranslate">apiResult.Status</code>赋值200，但是<code class="notranslate">apiResult.Data["parse_info"]</code>和<code class="notranslate">apiResult.Data["append_info"]</code>的缺失，会导致程序无法往下推进</p>
+</div>
+<div class="highlight highlight-source-cs"><pre class="notranslate"><span class="pl-k">private</span> <span class="pl-smi">void</span> <span class="pl-en">DownPlug</span><span class="pl-kos">(</span><span class="pl-smi">object</span><span class="pl-kos">[</span><span class="pl-kos">]</span> <span class="pl-s1">objs</span><span class="pl-kos">)</span>
+<span class="pl-kos">{</span>
+	<span class="pl-smi">ApiResult</span> <span class="pl-s1">apiResult</span> <span class="pl-c1">=</span> Util<span class="pl-kos">.</span><span class="pl-en">GetApiResult</span><span class="pl-kos">(</span>Constants<span class="pl-kos">.</span>API_PlugDownloadUrl <span class="pl-c1">+</span> <span class="pl-s"><span class="pl-s">"</span>?plugID=<span class="pl-s">"</span></span> <span class="pl-c1">+</span> <span class="pl-k">this</span><span class="pl-kos">.</span>plug<span class="pl-kos">.</span>UID<span class="pl-kos">,</span> <span class="pl-c1">3</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+	<span class="pl-k">if</span> <span class="pl-kos">(</span>apiResult<span class="pl-kos">.</span>Status <span class="pl-c1">==</span> <span class="pl-c1">200</span><span class="pl-kos">)</span>
+	<span class="pl-kos">{</span>
+		<span class="pl-k">this</span><span class="pl-kos">.</span>plug<span class="pl-kos">.</span>LocalFlag <span class="pl-c1">=</span> <span class="pl-c1">1</span><span class="pl-kos">;</span>
+		<span class="pl-k">this</span><span class="pl-kos">.</span>plug<span class="pl-kos">.</span>ParseInfo <span class="pl-c1">=</span> apiResult<span class="pl-kos">.</span>Data<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>parse_info<span class="pl-s">"</span></span><span class="pl-kos">]</span><span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+		<span class="pl-k">this</span><span class="pl-kos">.</span>plug<span class="pl-kos">.</span>AppendInfo <span class="pl-c1">=</span> apiResult<span class="pl-kos">.</span>Data<span class="pl-kos">[</span><span class="pl-s"><span class="pl-s">"</span>append_info<span class="pl-s">"</span></span><span class="pl-kos">]</span><span class="pl-kos">.</span><span class="pl-en">ToString</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+		DataProcess<span class="pl-kos">.</span><span class="pl-en">UpdateUrlPlug</span><span class="pl-kos">(</span><span class="pl-k">this</span><span class="pl-kos">.</span>plug<span class="pl-kos">)</span><span class="pl-kos">;</span>
+		<span class="pl-k">base</span><span class="pl-kos">.</span>Dispatcher<span class="pl-kos">.</span><span class="pl-en">Invoke</span><span class="pl-kos">(</span><span class="pl-k">delegate</span>
+		<span class="pl-kos">{</span>
+			<span class="pl-k">this</span><span class="pl-kos">.</span>IsChanged <span class="pl-c1">=</span> <span class="pl-c1">true</span><span class="pl-kos">;</span>
+			<span class="pl-k">base</span><span class="pl-kos">.</span><span class="pl-en">Close</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+		<span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+		<span class="pl-k">return</span><span class="pl-kos">;</span>
+	<span class="pl-kos">}</span>
+	<span class="pl-k">this</span><span class="pl-kos">.</span>loadingW<span class="pl-kos">.</span><span class="pl-en">ShowMsg</span><span class="pl-kos">(</span>apiResult<span class="pl-kos">.</span>Msg<span class="pl-kos">,</span> <span class="pl-c1">3</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+<span class="pl-kos">}</span></pre></div>
+<blockquote>
+<p>或许只有研究一下，如何刷分享值了</p>
+</blockquote>
 <h1>相关资源</h1>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>在线版: v1.2.0.5<br>
+离线版: v1.2.0.5</p>
+</div>
 <p>C#反编译工具: <a href="https://github.com/dnSpyEx/dnSpy">https://github.com/dnSpyEx/dnSpy</a><br>
 <a href="https://github.com/dnSpyEx/dnSpy"><img src="https://camo.githubusercontent.com/bac7b8736a63f9a31bb6f0e37ff91a2473f06a22b0c88847ae8b1980e5574f91/68747470733a2f2f67682d636172642e6465762f7265706f732f646e53707945782f646e5370792e737667" alt="dnSpyEx/dnSpy - GitHub" data-canonical-src="https://gh-card.dev/repos/dnSpyEx/dnSpy.svg" style="max-width: 100%;"></a></p>
-<p><a href="https://github.com/user-attachments/files/16489657/Read133_Offline.zip">Read133_Offline.zip</a></p></div>
+<p><a href="https://github.com/user-attachments/files/16489657/Read133_Offline.zip">Read133_Offline.zip</a></p>
+<p><a href="https://github.com/user-attachments/files/16504182/read133_pro.zip">read133_pro.zip</a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
