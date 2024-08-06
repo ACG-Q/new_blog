@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Tue, 06 Aug 2024 01:45:14 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title>[C#] 极简·单行阅读器</title><link>https://ACG-Q.github.io/new_blog/post/12.html</link><description>&gt; [!NOTE]&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Tue, 06 Aug 2024 05:25:28 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title>[C#] 极简·单行阅读器</title><link>https://ACG-Q.github.io/new_blog/post/12.html</link><description>&gt; [!NOTE]&#13;
 &gt; 软件名称: 极简·单行阅读器&#13;
 &gt; 软件官网: [Read133](http://read.home133.com/)&#13;
 &#13;
@@ -490,7 +490,19 @@ C#反编译工具: https://github.com/dnSpyEx/dnSpy&#13;
 [Read133_Offline.zip](https://github.com/user-attachments/files/16489657/Read133_Offline.zip)&#13;
 &#13;
 [read133_pro.zip](https://github.com/user-attachments/files/16504182/read133_pro.zip)&#13;
-。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/12.html</guid><pubDate>Mon, 05 Aug 2024 05:44:43 +0000</pubDate></item><item><title>未来计划: 复刻 jekyll-theme-chirpy 到 Gmeek</title><link>https://ACG-Q.github.io/new_blog/post/11.html</link><description>[![cotes2020/jekyll-theme-chirpy - GitHub](https://gh-card.dev/repos/cotes2020/jekyll-theme-chirpy.svg)](https://github.com/cotes2020/jekyll-theme-chirpy)。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/11.html</guid><pubDate>Wed, 24 Jul 2024 06:10:31 +0000</pubDate></item><item><title>CORS Anywhere</title><link>https://ACG-Q.github.io/new_blog/post/10.html</link><description>[![Rob--W/cors-anywhere - GitHub](https://gh-card.dev/repos/Rob--W/cors-anywhere.svg)](https://github.com/Rob--W/cors-anywhere)&#13;
+。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/12.html</guid><pubDate>Mon, 05 Aug 2024 05:44:43 +0000</pubDate></item><item><title>未来计划: 复刻 jekyll-theme-chirpy 到 Gmeek</title><link>https://ACG-Q.github.io/new_blog/post/11.html</link><description>[![cotes2020/jekyll-theme-chirpy - GitHub](https://gh-card.dev/repos/cotes2020/jekyll-theme-chirpy.svg)](https://github.com/cotes2020/jekyll-theme-chirpy)&#13;
+&#13;
+# 实现原理&#13;
+&#13;
+通过替换https://github.com/Meekdai/Gmeek的Templates文件夹&#13;
+&#13;
+# 仓库&#13;
+&#13;
+&gt; [!TIP]&#13;
+&gt; 如果完成了这件事，那么下面就会显示出我的仓库卡片，如果没有...&#13;
+&#13;
+[![ACG-Q/gmeek-theme-chirpy - GitHub](https://gh-card.dev/repos/ACG-Q/gmeek-theme-chirpy.svg)](https://github.com/ACG-Q/gmeek-theme-chirpy)&#13;
+。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/11.html</guid><pubDate>Wed, 24 Jul 2024 06:10:31 +0000</pubDate></item><item><title>CORS Anywhere</title><link>https://ACG-Q.github.io/new_blog/post/10.html</link><description>[![Rob--W/cors-anywhere - GitHub](https://gh-card.dev/repos/Rob--W/cors-anywhere.svg)](https://github.com/Rob--W/cors-anywhere)&#13;
 &#13;
 # CORS Anywhere&#13;
 &#13;
