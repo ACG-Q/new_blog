@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Fri, 09 Aug 2024 01:21:23 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title>树莓派5开启VNC</title><link>https://ACG-Q.github.io/new_blog/post/13.html</link><description># 开启VNC&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Fri, 09 Aug 2024 07:21:27 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title>树莓派5开启VNC</title><link>https://ACG-Q.github.io/new_blog/post/13.html</link><description># 开启VNC&#13;
 &#13;
 ## 1. 打开树莓派配置&#13;
 &#13;
@@ -34,6 +34,13 @@ sudo raspi-config&#13;
 ![VNC 图标](https://github.com/user-attachments/assets/c09b5460-3a75-4d27-a7be-c9933a6c36b8)&#13;
 &#13;
 ---&#13;
+&#13;
+# 允许NoVNC进行连接/修改VNC验证协议&#13;
+&#13;
+&gt; [!TIP]&#13;
+&gt; 切换 `Authentication` 为 `VNC Password`&#13;
+&#13;
+![image](https://github.com/user-attachments/assets/f2b5765d-1acd-46df-8943-27cd988443b2)&#13;
 &#13;
 # 遇到的问题&#13;
 &#13;

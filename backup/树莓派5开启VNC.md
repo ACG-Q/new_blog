@@ -34,6 +34,13 @@ sudo raspi-config
 
 ---
 
+# 允许NoVNC进行连接/修改VNC验证协议
+
+> [!TIP]
+> 切换 `Authentication` 为 `VNC Password`
+
+![image](https://github.com/user-attachments/assets/f2b5765d-1acd-46df-8943-27cd988443b2)
+
 # 遇到的问题
 
 ## 1. No configured security type is supported by 3.3 VNC Viewer
