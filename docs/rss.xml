@@ -1,5 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Tue, 13 Aug 2024 01:29:27 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title> [油猴] 文件蜈蚣 - 显示今日激活码</title><link>https://ACG-Q.github.io/new_blog/post/14.html</link><description>![image](https://github.com/user-attachments/assets/0a514916-6890-4448-b51f-a9da4256e109)&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>六记の随笔</title><link>https://ACG-Q.github.io/new_blog</link><description>哟吼！！！</description><copyright>六记の随笔</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://ACG-Q.github.io/new_blog</link></image><lastBuildDate>Mon, 26 Aug 2024 02:12:33 +0000</lastBuildDate><managingEditor>六记の随笔</managingEditor><ttl>60</ttl><webMaster>六记の随笔</webMaster><item><title>API大全</title><link>https://ACG-Q.github.io/new_blog/post/15.html</link><description># API大全&#13;
+&#13;
+## 壁纸&#13;
+&#13;
+| 壁纸DEMO                             | 官网                                                      | 备注                                                         |&#13;
+| -------------- | ------------------------------- | ------------------------------------ |&#13;
+| &lt;img src='https://api.chongss.com/api.php?category=all' width='320' /&gt; | [随机图片壁纸API - 新标签页API](https://api.chongss.com/) | 提供了三种壁纸接口&lt;br /&gt;1. 自适应壁纸&lt;br /&gt;2. 桌面端壁纸&lt;br /&gt;3. 移动端壁纸 |&#13;
+|                                                              |                                                           |                                                              |&#13;
+&#13;
+。</description><guid isPermaLink="true">https://ACG-Q.github.io/new_blog/post/15.html</guid><pubDate>Mon, 26 Aug 2024 02:12:07 +0000</pubDate></item><item><title> [油猴] 文件蜈蚣 - 显示今日激活码</title><link>https://ACG-Q.github.io/new_blog/post/14.html</link><description>![image](https://github.com/user-attachments/assets/0a514916-6890-4448-b51f-a9da4256e109)&#13;
 &lt;details&gt;&#13;
 &lt;summary&gt;油猴脚本&lt;/summary&gt;&#13;
 &#13;
