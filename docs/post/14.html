@@ -53,17 +53,19 @@
 
     // 函数：显示自定义提示框
     function showCustomAlert(message, success = true) {
-        const alertBox = $('<div>').css({
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            padding: '10px 20px',
-            background: success ? '#44c767' : '#e74c3c',
-            color: '#fff',
-            'border-radius': '5px',
-            'box-shadow': '0px 0px 10px rgba(0, 0, 0, 0.1)',
-            'z-index': '1000'
-        }).text(message);
+        const alertBox = $('<div>')
+            .css({
+                position: 'fixed',
+                top: '20px',
+                right: '20px',
+                padding: '10px 20px',
+                background: success ? '#44c767' : '#e74c3c',
+                color: '#fff',
+                'border-radius': '5px',
+                'box-shadow': '0px 0px 10px rgba(0, 0, 0, 0.1)',
+                'z-index': '1000',
+            })
+            .text(message);
 
         $('body').append(alertBox);
 
@@ -76,18 +78,20 @@
 
     // 函数：显示加载提示
     function showLoading() {
-        const loadingBox = $('<div>').css({
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            padding: '10px 20px',
-            background: '#000',
-            color: '#fff',
-            'border-radius': '5px',
-            'box-shadow': '0px 0px 10px rgba(0, 0, 0, 0.5)',
-            'z-index': '1050'
-        }).text('加载中...');
+        const loadingBox = $('<div>')
+            .css({
+                position: 'fixed',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                padding: '10px 20px',
+                background: '#000',
+                color: '#fff',
+                'border-radius': '5px',
+                'box-shadow': '0px 0px 10px rgba(0, 0, 0, 0.5)',
+                'z-index': '1050',
+            })
+            .text('加载中...');
 
         $('body').append(loadingBox);
 
@@ -118,30 +122,37 @@
                 return;
             }
 
-            const copyButton = $('<button>复制</button>').css({
-                padding: '5px 10px',
-                'font-size': '14px',
-                color: '#fff',
-                background: '#007bff',
-                border: 'none',
-                'border-radius': '5px',
-                cursor: 'pointer',
-                'margin-left': '10px',
-                'transition': 'background 0.3s'
-            }).hover(
-                () => $(this).css('background', '#0056b3'),
-                () => $(this).css('background', '#007bff')
-            ).click(async function () {
-                const button = $(this);
-                button.prop('disabled', true).text('复制中...');
-                const success = await copyToClipboard(codeTexts.eq(i).text());
-                if (success) {
-                    showCustomAlert('激活码已复制到剪贴板！');
-                } else {
-                    showCustomAlert('复制失败，请重试！', false);
-                }
-                button.prop('disabled', false).text('复制');
-            });
+            const copyButton = $('<button>复制</button>')
+                .css({
+                    padding: '5px 10px',
+                    'font-size': '14px',
+                    color: '#fff',
+                    background: '#007bff',
+                    border: 'none',
+                    'border-radius': '5px',
+                    cursor: 'pointer',
+                    'margin-left': '10px',
+                    transition: 'background 0.3s',
+                })
+                .hover(
+                    function () {
+                        $(this).css('background', '#0056b3');
+                    },
+                    function () {
+                        $(this).css('background', '#007bff');
+                    }
+                )
+                .click(async function () {
+                    const button = $(this);
+                    button.prop('disabled', true).text('复制中...');
+                    const success = await copyToClipboard(codeTexts.eq(i).text());
+                    if (success) {
+                        showCustomAlert('激活码已复制到剪贴板！');
+                    } else {
+                        showCustomAlert('复制失败，请重试！', false);
+                    }
+                    button.prop('disabled', false).text('复制');
+                });
 
             $(this).append(copyButton);
         });
@@ -215,17 +226,19 @@
 
     // 函数：显示自定义提示框
     function showCustomAlert(message, success = true) {
-        const alertBox = $('<div>').css({
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            padding: '10px 20px',
-            background: success ? '#44c767' : '#e74c3c',
-            color: '#fff',
-            'border-radius': '5px',
-            'box-shadow': '0px 0px 10px rgba(0, 0, 0, 0.1)',
-            'z-index': '1000'
-        }).text(message);
+        const alertBox = $('<div>')
+            .css({
+                position: 'fixed',
+                top: '20px',
+                right: '20px',
+                padding: '10px 20px',
+                background: success ? '#44c767' : '#e74c3c',
+                color: '#fff',
+                'border-radius': '5px',
+                'box-shadow': '0px 0px 10px rgba(0, 0, 0, 0.1)',
+                'z-index': '1000',
+            })
+            .text(message);
 
         $('body').append(alertBox);
 
@@ -238,18 +251,20 @@
 
     // 函数：显示加载提示
     function showLoading() {
-        const loadingBox = $('<div>').css({
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            padding: '10px 20px',
-            background: '#000',
-            color: '#fff',
-            'border-radius': '5px',
-            'box-shadow': '0px 0px 10px rgba(0, 0, 0, 0.5)',
-            'z-index': '1050'
-        }).text('加载中...');
+        const loadingBox = $('<div>')
+            .css({
+                position: 'fixed',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                padding: '10px 20px',
+                background: '#000',
+                color: '#fff',
+                'border-radius': '5px',
+                'box-shadow': '0px 0px 10px rgba(0, 0, 0, 0.5)',
+                'z-index': '1050',
+            })
+            .text('加载中...');
 
         $('body').append(loadingBox);
 
@@ -280,30 +295,37 @@
                 return;
             }
 
-            const copyButton = $('<button>复制</button>').css({
-                padding: '5px 10px',
-                'font-size': '14px',
-                color: '#fff',
-                background: '#007bff',
-                border: 'none',
-                'border-radius': '5px',
-                cursor: 'pointer',
-                'margin-left': '10px',
-                'transition': 'background 0.3s'
-            }).hover(
-                () => $(this).css('background', '#0056b3'),
-                () => $(this).css('background', '#007bff')
-            ).click(async function () {
-                const button = $(this);
-                button.prop('disabled', true).text('复制中...');
-                const success = await copyToClipboard(codeTexts.eq(i).text());
-                if (success) {
-                    showCustomAlert('激活码已复制到剪贴板！');
-                } else {
-                    showCustomAlert('复制失败，请重试！', false);
-                }
-                button.prop('disabled', false).text('复制');
-            });
+            const copyButton = $('<button>复制</button>')
+                .css({
+                    padding: '5px 10px',
+                    'font-size': '14px',
+                    color: '#fff',
+                    background: '#007bff',
+                    border: 'none',
+                    'border-radius': '5px',
+                    cursor: 'pointer',
+                    'margin-left': '10px',
+                    transition: 'background 0.3s',
+                })
+                .hover(
+                    function () {
+                        $(this).css('background', '#0056b3');
+                    },
+                    function () {
+                        $(this).css('background', '#007bff');
+                    }
+                )
+                .click(async function () {
+                    const button = $(this);
+                    button.prop('disabled', true).text('复制中...');
+                    const success = await copyToClipboard(codeTexts.eq(i).text());
+                    if (success) {
+                        showCustomAlert('激活码已复制到剪贴板！');
+                    } else {
+                        showCustomAlert('复制失败，请重试！', false);
+                    }
+                    button.prop('disabled', false).text('复制');
+                });
 
             $(this).append(copyButton);
         });
@@ -419,7 +441,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-c">// ==/UserScript==</span>
 
 <span class="pl-kos">(</span><span class="pl-k">function</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-    <span class="pl-s">'use strict'</span><span class="pl-kos">;</span>
+    <span class="pl-s">"use strict"</span><span class="pl-kos">;</span>
 
     <span class="pl-c">// 函数：复制文本到剪贴板</span>
     <span class="pl-k">async</span> <span class="pl-k">function</span> <span class="pl-en">copyToClipboard</span><span class="pl-kos">(</span><span class="pl-s1">text</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
@@ -444,17 +466,19 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
     <span class="pl-c">// 函数：显示自定义提示框</span>
     <span class="pl-k">function</span> <span class="pl-en">showCustomAlert</span><span class="pl-kos">(</span><span class="pl-s1">message</span><span class="pl-kos">,</span> <span class="pl-s1">success</span> <span class="pl-c1">=</span> <span class="pl-c1">true</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-        <span class="pl-k">const</span> <span class="pl-s1">alertBox</span> <span class="pl-c1">=</span> <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-s">"&lt;div&gt;"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">css</span><span class="pl-kos">(</span><span class="pl-kos">{</span>
-            <span class="pl-c1">position</span>: <span class="pl-s">"fixed"</span><span class="pl-kos">,</span>
-            <span class="pl-c1">top</span>: <span class="pl-s">"20px"</span><span class="pl-kos">,</span>
-            <span class="pl-c1">right</span>: <span class="pl-s">"20px"</span><span class="pl-kos">,</span>
-            <span class="pl-c1">padding</span>: <span class="pl-s">"10px 20px"</span><span class="pl-kos">,</span>
-            <span class="pl-c1">background</span>: <span class="pl-s1">success</span> ? <span class="pl-s">"#44c767"</span> : <span class="pl-s">"#e74c3c"</span><span class="pl-kos">,</span>
-            <span class="pl-c1">color</span>: <span class="pl-s">"#fff"</span><span class="pl-kos">,</span>
-            <span class="pl-s">"border-radius"</span>: <span class="pl-s">"5px"</span><span class="pl-kos">,</span>
-            <span class="pl-s">"box-shadow"</span>: <span class="pl-s">"0px 0px 10px rgba(0, 0, 0, 0.1)"</span><span class="pl-kos">,</span>
-            <span class="pl-s">"z-index"</span>: <span class="pl-s">"1000"</span>
-        <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">text</span><span class="pl-kos">(</span><span class="pl-s1">message</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-k">const</span> <span class="pl-s1">alertBox</span> <span class="pl-c1">=</span> <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-s">"&lt;div&gt;"</span><span class="pl-kos">)</span>
+            <span class="pl-kos">.</span><span class="pl-en">css</span><span class="pl-kos">(</span><span class="pl-kos">{</span>
+                <span class="pl-c1">position</span>: <span class="pl-s">"fixed"</span><span class="pl-kos">,</span>
+                <span class="pl-c1">top</span>: <span class="pl-s">"20px"</span><span class="pl-kos">,</span>
+                <span class="pl-c1">right</span>: <span class="pl-s">"20px"</span><span class="pl-kos">,</span>
+                <span class="pl-c1">padding</span>: <span class="pl-s">"10px 20px"</span><span class="pl-kos">,</span>
+                <span class="pl-c1">background</span>: <span class="pl-s1">success</span> ? <span class="pl-s">"#44c767"</span> : <span class="pl-s">"#e74c3c"</span><span class="pl-kos">,</span>
+                <span class="pl-c1">color</span>: <span class="pl-s">"#fff"</span><span class="pl-kos">,</span>
+                <span class="pl-s">"border-radius"</span>: <span class="pl-s">"5px"</span><span class="pl-kos">,</span>
+                <span class="pl-s">"box-shadow"</span>: <span class="pl-s">"0px 0px 10px rgba(0, 0, 0, 0.1)"</span><span class="pl-kos">,</span>
+                <span class="pl-s">"z-index"</span>: <span class="pl-s">"1000"</span><span class="pl-kos">,</span>
+            <span class="pl-kos">}</span><span class="pl-kos">)</span>
+            <span class="pl-kos">.</span><span class="pl-en">text</span><span class="pl-kos">(</span><span class="pl-s1">message</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
         <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-s">"body"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">append</span><span class="pl-kos">(</span><span class="pl-s1">alertBox</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
@@ -467,18 +491,20 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
     <span class="pl-c">// 函数：显示加载提示</span>
     <span class="pl-k">function</span> <span class="pl-en">showLoading</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-        <span class="pl-k">const</span> <span class="pl-s1">loadingBox</span> <span class="pl-c1">=</span> <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-s">"&lt;div&gt;"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">css</span><span class="pl-kos">(</span><span class="pl-kos">{</span>
-            <span class="pl-c1">position</span>: <span class="pl-s">"fixed"</span><span class="pl-kos">,</span>
-            <span class="pl-c1">top</span>: <span class="pl-s">"50%"</span><span class="pl-kos">,</span>
-            <span class="pl-c1">left</span>: <span class="pl-s">"50%"</span><span class="pl-kos">,</span>
-            <span class="pl-c1">transform</span>: <span class="pl-s">"translate(-50%, -50%)"</span><span class="pl-kos">,</span>
-            <span class="pl-c1">padding</span>: <span class="pl-s">"10px 20px"</span><span class="pl-kos">,</span>
-            <span class="pl-c1">background</span>: <span class="pl-s">"#000"</span><span class="pl-kos">,</span>
-            <span class="pl-c1">color</span>: <span class="pl-s">"#fff"</span><span class="pl-kos">,</span>
-            <span class="pl-s">"border-radius"</span>: <span class="pl-s">"5px"</span><span class="pl-kos">,</span>
-            <span class="pl-s">"box-shadow"</span>: <span class="pl-s">"0px 0px 10px rgba(0, 0, 0, 0.5)"</span><span class="pl-kos">,</span>
-            <span class="pl-s">"z-index"</span>: <span class="pl-s">"1050"</span>
-        <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">text</span><span class="pl-kos">(</span><span class="pl-s">"加载中..."</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+        <span class="pl-k">const</span> <span class="pl-s1">loadingBox</span> <span class="pl-c1">=</span> <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-s">"&lt;div&gt;"</span><span class="pl-kos">)</span>
+            <span class="pl-kos">.</span><span class="pl-en">css</span><span class="pl-kos">(</span><span class="pl-kos">{</span>
+                <span class="pl-c1">position</span>: <span class="pl-s">"fixed"</span><span class="pl-kos">,</span>
+                <span class="pl-c1">top</span>: <span class="pl-s">"50%"</span><span class="pl-kos">,</span>
+                <span class="pl-c1">left</span>: <span class="pl-s">"50%"</span><span class="pl-kos">,</span>
+                <span class="pl-c1">transform</span>: <span class="pl-s">"translate(-50%, -50%)"</span><span class="pl-kos">,</span>
+                <span class="pl-c1">padding</span>: <span class="pl-s">"10px 20px"</span><span class="pl-kos">,</span>
+                <span class="pl-c1">background</span>: <span class="pl-s">"#000"</span><span class="pl-kos">,</span>
+                <span class="pl-c1">color</span>: <span class="pl-s">"#fff"</span><span class="pl-kos">,</span>
+                <span class="pl-s">"border-radius"</span>: <span class="pl-s">"5px"</span><span class="pl-kos">,</span>
+                <span class="pl-s">"box-shadow"</span>: <span class="pl-s">"0px 0px 10px rgba(0, 0, 0, 0.5)"</span><span class="pl-kos">,</span>
+                <span class="pl-s">"z-index"</span>: <span class="pl-s">"1050"</span><span class="pl-kos">,</span>
+            <span class="pl-kos">}</span><span class="pl-kos">)</span>
+            <span class="pl-kos">.</span><span class="pl-en">text</span><span class="pl-kos">(</span><span class="pl-s">"加载中..."</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
         <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-s">"body"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">append</span><span class="pl-kos">(</span><span class="pl-s1">loadingBox</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
@@ -509,30 +535,37 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
                 <span class="pl-k">return</span><span class="pl-kos">;</span>
             <span class="pl-kos">}</span>
 
-            <span class="pl-k">const</span> <span class="pl-s1">copyButton</span> <span class="pl-c1">=</span> <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-s">"&lt;button&gt;复制&lt;/button&gt;"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">css</span><span class="pl-kos">(</span><span class="pl-kos">{</span>
-                <span class="pl-c1">padding</span>: <span class="pl-s">"5px 10px"</span><span class="pl-kos">,</span>
-                <span class="pl-s">"font-size"</span>: <span class="pl-s">"14px"</span><span class="pl-kos">,</span>
-                <span class="pl-c1">color</span>: <span class="pl-s">"#fff"</span><span class="pl-kos">,</span>
-                <span class="pl-c1">background</span>: <span class="pl-s">"#007bff"</span><span class="pl-kos">,</span>
-                <span class="pl-c1">border</span>: <span class="pl-s">"none"</span><span class="pl-kos">,</span>
-                <span class="pl-s">"border-radius"</span>: <span class="pl-s">"5px"</span><span class="pl-kos">,</span>
-                <span class="pl-c1">cursor</span>: <span class="pl-s">"pointer"</span><span class="pl-kos">,</span>
-                <span class="pl-s">"margin-left"</span>: <span class="pl-s">"10px"</span><span class="pl-kos">,</span>
-                <span class="pl-s">"transition"</span>: <span class="pl-s">"background 0.3s"</span>
-            <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">hover</span><span class="pl-kos">(</span>
-                <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-smi">this</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">css</span><span class="pl-kos">(</span><span class="pl-s">"background"</span><span class="pl-kos">,</span> <span class="pl-s">"#0056b3"</span><span class="pl-kos">)</span><span class="pl-kos">,</span>
-                <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-c1">=&gt;</span> <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-smi">this</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">css</span><span class="pl-kos">(</span><span class="pl-s">"background"</span><span class="pl-kos">,</span> <span class="pl-s">"#007bff"</span><span class="pl-kos">)</span>
-            <span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">click</span><span class="pl-kos">(</span><span class="pl-k">async</span> <span class="pl-k">function</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-                <span class="pl-k">const</span> <span class="pl-s1">button</span> <span class="pl-c1">=</span> <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-smi">this</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-                <span class="pl-s1">button</span><span class="pl-kos">.</span><span class="pl-en">prop</span><span class="pl-kos">(</span><span class="pl-s">"disabled"</span><span class="pl-kos">,</span> <span class="pl-c1">true</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">text</span><span class="pl-kos">(</span><span class="pl-s">"复制中..."</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-                <span class="pl-k">const</span> <span class="pl-s1">success</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-en">copyToClipboard</span><span class="pl-kos">(</span><span class="pl-s1">codeTexts</span><span class="pl-kos">.</span><span class="pl-en">eq</span><span class="pl-kos">(</span><span class="pl-s1">i</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">text</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-                <span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">success</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-                    <span class="pl-en">showCustomAlert</span><span class="pl-kos">(</span><span class="pl-s">"激活码已复制到剪贴板！"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-                <span class="pl-kos">}</span> <span class="pl-k">else</span> <span class="pl-kos">{</span>
-                    <span class="pl-en">showCustomAlert</span><span class="pl-kos">(</span><span class="pl-s">"复制失败，请重试！"</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-                <span class="pl-kos">}</span>
-                <span class="pl-s1">button</span><span class="pl-kos">.</span><span class="pl-en">prop</span><span class="pl-kos">(</span><span class="pl-s">"disabled"</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">text</span><span class="pl-kos">(</span><span class="pl-s">"复制"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-            <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+            <span class="pl-k">const</span> <span class="pl-s1">copyButton</span> <span class="pl-c1">=</span> <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-s">"&lt;button&gt;复制&lt;/button&gt;"</span><span class="pl-kos">)</span>
+                <span class="pl-kos">.</span><span class="pl-en">css</span><span class="pl-kos">(</span><span class="pl-kos">{</span>
+                    <span class="pl-c1">padding</span>: <span class="pl-s">"5px 10px"</span><span class="pl-kos">,</span>
+                    <span class="pl-s">"font-size"</span>: <span class="pl-s">"14px"</span><span class="pl-kos">,</span>
+                    <span class="pl-c1">color</span>: <span class="pl-s">"#fff"</span><span class="pl-kos">,</span>
+                    <span class="pl-c1">background</span>: <span class="pl-s">"#007bff"</span><span class="pl-kos">,</span>
+                    <span class="pl-c1">border</span>: <span class="pl-s">"none"</span><span class="pl-kos">,</span>
+                    <span class="pl-s">"border-radius"</span>: <span class="pl-s">"5px"</span><span class="pl-kos">,</span>
+                    <span class="pl-c1">cursor</span>: <span class="pl-s">"pointer"</span><span class="pl-kos">,</span>
+                    <span class="pl-s">"margin-left"</span>: <span class="pl-s">"10px"</span><span class="pl-kos">,</span>
+                    <span class="pl-c1">transition</span>: <span class="pl-s">"background 0.3s"</span><span class="pl-kos">,</span>
+                <span class="pl-kos">}</span><span class="pl-kos">)</span>
+                <span class="pl-kos">.</span><span class="pl-en">hover</span><span class="pl-kos">(</span>
+                    <span class="pl-k">function</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+                        <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-smi">this</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">css</span><span class="pl-kos">(</span><span class="pl-s">"background"</span><span class="pl-kos">,</span> <span class="pl-s">"#0056b3"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+                    <span class="pl-kos">}</span><span class="pl-kos">,</span>
+                    <span class="pl-k">function</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+                        <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-smi">this</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">css</span><span class="pl-kos">(</span><span class="pl-s">"background"</span><span class="pl-kos">,</span> <span class="pl-s">"#007bff"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+                    <span class="pl-kos">}</span>
+                <span class="pl-kos">)</span>
+                <span class="pl-kos">.</span><span class="pl-en">click</span><span class="pl-kos">(</span><span class="pl-k">async</span> <span class="pl-k">function</span> <span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+                    <span class="pl-k">const</span> <span class="pl-s1">button</span> <span class="pl-c1">=</span> <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-smi">this</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+                    <span class="pl-s1">button</span><span class="pl-kos">.</span><span class="pl-en">prop</span><span class="pl-kos">(</span><span class="pl-s">"disabled"</span><span class="pl-kos">,</span> <span class="pl-c1">true</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">text</span><span class="pl-kos">(</span><span class="pl-s">"复制中..."</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+                    <span class="pl-k">const</span> <span class="pl-s1">success</span> <span class="pl-c1">=</span> <span class="pl-k">await</span> <span class="pl-en">copyToClipboard</span><span class="pl-kos">(</span><span class="pl-s1">codeTexts</span><span class="pl-kos">.</span><span class="pl-en">eq</span><span class="pl-kos">(</span><span class="pl-s1">i</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">text</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+                    <span class="pl-k">if</span> <span class="pl-kos">(</span><span class="pl-s1">success</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
+                        <span class="pl-en">showCustomAlert</span><span class="pl-kos">(</span><span class="pl-s">"激活码已复制到剪贴板！"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+                    <span class="pl-kos">}</span> <span class="pl-k">else</span> <span class="pl-kos">{</span>
+                        <span class="pl-en">showCustomAlert</span><span class="pl-kos">(</span><span class="pl-s">"复制失败，请重试！"</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+                    <span class="pl-kos">}</span>
+                    <span class="pl-s1">button</span><span class="pl-kos">.</span><span class="pl-en">prop</span><span class="pl-kos">(</span><span class="pl-s">"disabled"</span><span class="pl-kos">,</span> <span class="pl-c1">false</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">text</span><span class="pl-kos">(</span><span class="pl-s">"复制"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
+                <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
 
             <span class="pl-en">$</span><span class="pl-kos">(</span><span class="pl-smi">this</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">append</span><span class="pl-kos">(</span><span class="pl-s1">copyButton</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
         <span class="pl-kos">}</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
